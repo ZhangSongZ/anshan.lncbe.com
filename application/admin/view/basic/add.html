@@ -1,0 +1,147 @@
+<form id="add-form" class="form-horizontal" role="form" data-toggle="validator" method="POST" action="">
+
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('EbpCode')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-ebpCode" data-rule="required" class="form-control" name="row[ebpCode]" type="text">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('EbpName')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-ebpName" data-rule="required" class="form-control" name="row[ebpName]" type="text">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('EbcCode')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-ebcCode" data-rule="required" class="form-control" name="row[ebcCode]" type="text">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('EbcName')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-ebcName" data-rule="required" class="form-control" name="row[ebcName]" type="text">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('LogisticsCode')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-logisticsCode" data-rule="required" class="form-control" name="row[logisticsCode]" type="text">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('LogisticsName')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-logisticsName" data-rule="required" class="form-control" name="row[logisticsName]" type="text">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('CustomsCode')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-customsCode" data-rule="required" class="form-control" name="row[customsCode]" type="text">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('PortCode')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-portCode" data-rule="required" class="form-control" name="row[portCode]" type="text">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('StatisticsFlag')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-statisticsFlag" data-rule="required" class="form-control" name="row[statisticsFlag]" type="text">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('AgentCode')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-agentCode" data-rule="required" class="form-control" name="row[agentCode]" type="text">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('AgentName')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-agentName" data-rule="required" class="form-control" name="row[agentName]" type="text">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('OwnerCode')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-ownerCode" data-rule="required" class="form-control" name="row[ownerCode]" type="text">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('OwnerName')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-ownerName" data-rule="required" class="form-control" name="row[ownerName]" type="text">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('TradeMode')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-tradeMode" data-rule="required" class="form-control" name="row[tradeMode]" type="text">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('TrafMode')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-trafMode" data-rule="required" class="form-control" name="row[trafMode]" type="text">
+        </div>
+    </div>
+    
+      <div class="form-group">
+            <label class="col-xs-2" style="width:15%;margin-left:15px">{:__('分单模式')}:</label>
+            <div class="col-xs-12 col-sm-8">
+                <select id="c-decBillNo" class="form-control selectpicker" name="row[decBillNo]">
+                    <option value="否">否</option>
+                    <option value="是">是</option>
+                    <!-- 这里的选项可以静态定义，也可以来自后端PHP变量赋值 -->
+                </select>
+            </div>
+     </div>
+     
+      <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('报关单位代码')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-declagAgentCode" data-rule="required" class="form-control" name="row[declagAgentCode]" type="text">
+        </div>
+    </div>
+    
+     <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('报关单位名称')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-declAgentName" data-rule="required" class="form-control" name="row[declAgentName]" type="text">
+        </div>
+    </div>
+    
+    
+    
+    
+     <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('监管场所经营人代码')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-operatorCode" data-rule="required" class="form-control" name="row[operatorCode]" type="text">
+        </div>
+    </div>
+     <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('监管场所经营人名称')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-operatorName" data-rule="required" class="form-control" name="row[operatorName]" type="text">
+        </div>
+    </div>
+     <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('监管场所代码')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-loctNo" data-rule="required" class="form-control" name="row[loctNo]" type="text">
+        </div>
+    </div>
+  
+    <div class="form-group layer-footer">
+        <label class="control-label col-xs-12 col-sm-2"></label>
+        <div class="col-xs-12 col-sm-8">
+            <button type="submit" class="btn btn-primary btn-embossed disabled">{:__('OK')}</button>
+        </div>
+    </div>
+</form>

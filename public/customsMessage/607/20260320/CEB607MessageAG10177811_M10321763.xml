@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ceb:CEB607Message guid='F54AC4C1-C082-45CA-C906-CAA24F2A8E6C' version='1.0' xmlns:ceb='http://www.chinaport.gov.cn/ceb' xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'>
+<ceb:WayBill>
+  <ceb:WayBillHead>
+    <ceb:guid>938E1ABA-714C-F032-42F0-1652FA7FDB5D</ceb:guid>
+    <ceb:appType>1</ceb:appType>
+    <ceb:appTime>20260320103217</ceb:appTime>
+    <ceb:appStatus>2</ceb:appStatus>
+    <ceb:customsCode>3</ceb:customsCode>
+    <ceb:copNo>B20260317030137609254018</ceb:copNo>
+    <ceb:agentCode>3</ceb:agentCode>
+    <ceb:agentName>3</ceb:agentName>
+    <ceb:loctNo>3</ceb:loctNo>
+    <ceb:trafMode>3</ceb:trafMode>
+    <ceb:trafName>X8059</ceb:trafName>
+    <ceb:voyageNo>X8059</ceb:voyageNo>
+    <ceb:billNo>AG10177811</ceb:billNo>
+    <ceb:domesticTrafNo></ceb:domesticTrafNo>
+    <ceb:grossWeight>0.08</ceb:grossWeight>
+    <ceb:logisticsCode>3</ceb:logisticsCode>
+    <ceb:logisticsName>3</ceb:logisticsName>
+    <ceb:msgCount>1</ceb:msgCount>
+    <ceb:msgSeqNo>1</ceb:msgSeqNo>
+    <ceb:note></ceb:note>
+</ceb:WayBillHead>
+<ceb:WayBillList>
+    <ceb:gnum>1</ceb:gnum>
+    <ceb:totalPackageNo></ceb:totalPackageNo>
+    <ceb:logisticsNo>UU437258757CN</ceb:logisticsNo>
+    <ceb:note></ceb:note>
+</ceb:WayBillList>
+<ceb:WayBillList>
+    <ceb:gnum>2</ceb:gnum>
+    <ceb:totalPackageNo></ceb:totalPackageNo>
+    <ceb:logisticsNo>UU438278435CN</ceb:logisticsNo>
+    <ceb:note></ceb:note>
+</ceb:WayBillList>
+</ceb:WayBill>
+    <ceb:BaseTransfer>
+        <ceb:copCode>3</ceb:copCode>
+        <ceb:copName>3</ceb:copName>
+        <ceb:dxpMode>DXP</ceb:dxpMode>
+        <ceb:dxpId>DXPENT0000018238</ceb:dxpId>
+        <ceb:note></ceb:note>
+    </ceb:BaseTransfer>
+</ceb:CEB607Message>

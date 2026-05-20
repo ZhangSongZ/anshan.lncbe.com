@@ -1,0 +1,117 @@
+<form id="add-form" class="form-horizontal" role="form" data-toggle="validator" method="POST" action="">
+
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Orderno')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-orderNo" data-rule="required" class="form-control" name="row[orderNo]" type="text" value="0">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Totalpackageno')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-totalPackageNo" class="form-control" name="row[totalPackageNo]" type="text" value="">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Logisticsno')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-logisticsNo" class="form-control" name="row[logisticsNo]" type="text">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Country')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-country" class="form-control" name="row[country]" type="text">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Logisticscode')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-logisticsCode" class="form-control" name="row[logisticsCode]" type="text">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Weight')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-weight" class="form-control" step="0.00001" name="row[weight]" type="number">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Product_bn')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-product_bn" data-rule="required" class="form-control" name="row[product_bn]" type="text" value="0">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Product_name')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-product_name" data-rule="required" class="form-control" name="row[product_name]" type="text" value="">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Gcode')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-gcode" data-rule="required" class="form-control" name="row[gcode]" type="text" value="">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Qty')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-qty" data-rule="required" min="0" class="form-control" name="row[qty]" type="number" value="0">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Price')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-price" data-rule="required" class="form-control" step="0.001" name="row[price]" type="number" value="0.000">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Item_currency')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-item_currency" data-rule="required" class="form-control" name="row[item_currency]" type="text" value="502">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Netweight')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-netWeight" class="form-control" step="0.00001" name="row[netWeight]" type="number">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Billno')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-billNo" class="form-control" name="row[billNo]" type="text">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Voyageno')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-voyageNo" class="form-control" name="row[voyageNo]" type="text">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Cost_freight')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-cost_freight" data-rule="required" class="form-control" step="0.001" name="row[cost_freight]" type="number" value="0.000">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Freight_currency')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-freight_currency" data-rule="required" class="form-control" name="row[freight_currency]" type="number" value="142">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Gmodel')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-gmodel" data-rule="required" class="form-control" name="row[gmodel]" type="text" value="">
+        </div>
+    </div>
+    <div class="form-group layer-footer">
+        <label class="control-label col-xs-12 col-sm-2"></label>
+        <div class="col-xs-12 col-sm-8">
+            <button type="submit" class="btn btn-primary btn-embossed disabled">{:__('OK')}</button>
+        </div>
+    </div>
+</form>

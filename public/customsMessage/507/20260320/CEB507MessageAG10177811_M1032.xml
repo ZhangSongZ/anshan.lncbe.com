@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ceb:CEB507Message guid='9E45F702-D3BB-F25B-5B3D-7EB10C822644' version='1.0' xmlns:ceb='http://www.chinaport.gov.cn/ceb' xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'>
+<ceb:Arrival>
+  <ceb:ArrivalHead>
+    <ceb:guid>19225D27-4B4E-88DB-1B98-A71B37E04A52</ceb:guid>
+    <ceb:appType>1</ceb:appType>
+    <ceb:appTime>20260320103220</ceb:appTime>
+    <ceb:appStatus>2</ceb:appStatus>
+    <ceb:customsCode>3</ceb:customsCode>
+    <ceb:copNo>B20260317030137407754738</ceb:copNo>
+    <ceb:operatorCode>3</ceb:operatorCode>
+    <ceb:operatorName>3</ceb:operatorName>
+    <ceb:loctNo>3</ceb:loctNo>
+    <ceb:ieFlag>E</ceb:ieFlag>
+    <ceb:trafMode>3</ceb:trafMode>
+    <ceb:billNo>AG10177811</ceb:billNo>
+    <ceb:domesticTrafNo>X8059</ceb:domesticTrafNo>
+    <ceb:logisticsCode>3</ceb:logisticsCode>
+    <ceb:logisticsName>3</ceb:logisticsName>
+    <ceb:msgCount>1</ceb:msgCount>
+    <ceb:msgSeqNo>1</ceb:msgSeqNo>
+    <ceb:note></ceb:note>
+</ceb:ArrivalHead>
+</ceb:Arrival>
+    <ceb:BaseTransfer>
+        <ceb:copCode>3</ceb:copCode>
+        <ceb:copName>3</ceb:copName>
+        <ceb:dxpMode>DXP</ceb:dxpMode>
+        <ceb:dxpId>DXPENT0000018238</ceb:dxpId>
+        <ceb:note></ceb:note>
+    </ceb:BaseTransfer>
+</ceb:CEB507Message>

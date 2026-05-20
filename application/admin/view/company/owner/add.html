@@ -1,0 +1,27 @@
+<form id="add-form" class="form-horizontal" role="form" data-toggle="validator" method="POST" action="">
+
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Ownercode')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-ownercode" data-rule="required" class="form-control" name="row[ownercode]" type="text">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Ownername')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-ownername" data-rule="required" class="form-control" name="row[ownername]" type="text">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Owner_scc')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-owner_scc" data-rule="required" class="form-control" name="row[owner_scc]" type="text" value="">
+        </div>
+    </div>
+    <div class="form-group layer-footer">
+        <label class="control-label col-xs-12 col-sm-2"></label>
+        <div class="col-xs-12 col-sm-8">
+            <button type="submit" class="btn btn-primary btn-embossed disabled">{:__('OK')}</button>
+        </div>
+    </div>
+</form>

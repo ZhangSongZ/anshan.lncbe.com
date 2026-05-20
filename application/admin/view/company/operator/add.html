@@ -1,0 +1,27 @@
+<form id="add-form" class="form-horizontal" role="form" data-toggle="validator" method="POST" action="">
+
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('OperatorCode')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-operatorCode" data-rule="required" class="form-control" name="row[operatorCode]" type="text">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('OperatorName')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-operatorName" data-rule="required" class="form-control" name="row[operatorName]" type="text">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('LoctNo')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-loctNo" data-rule="required" class="form-control" name="row[loctNo]" type="text">
+        </div>
+    </div>
+    <div class="form-group layer-footer">
+        <label class="control-label col-xs-12 col-sm-2"></label>
+        <div class="col-xs-12 col-sm-8">
+            <button type="submit" class="btn btn-primary btn-embossed disabled">{:__('OK')}</button>
+        </div>
+    </div>
+</form>

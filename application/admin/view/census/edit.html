@@ -1,0 +1,45 @@
+<form id="edit-form" class="form-horizontal" role="form" data-toggle="validator" method="POST" action="">
+
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Auth_id')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-auth_id" data-rule="required" data-source="auth/index" class="form-control selectpage" name="row[auth_id]" type="text" value="{$row.auth_id|htmlentities}">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Billno')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-billNo" data-rule="required" class="form-control" name="row[billNo]" type="text" value="{$row.billNo|htmlentities}">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Countpack')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-countpack" data-rule="required" class="form-control" name="row[countpack]" type="text" value="{$row.countpack|htmlentities}">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Countlogis')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-countlogis" data-rule="required" class="form-control" name="row[countlogis]" type="text" value="{$row.countlogis|htmlentities}">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Allmoeny')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-allmoeny" data-rule="required" class="form-control" name="row[allmoeny]" type="text" value="{$row.allmoeny|htmlentities}">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Allweight')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-allWeight" data-rule="required" class="form-control" name="row[allWeight]" type="text" value="{$row.allWeight|htmlentities}">
+        </div>
+    </div>
+    <div class="form-group layer-footer">
+        <label class="control-label col-xs-12 col-sm-2"></label>
+        <div class="col-xs-12 col-sm-8">
+            <button type="submit" class="btn btn-primary btn-embossed disabled">{:__('OK')}</button>
+        </div>
+    </div>
+</form>

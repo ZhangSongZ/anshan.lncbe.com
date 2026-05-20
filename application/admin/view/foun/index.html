@@ -1,0 +1,36 @@
+<div class="col-md-6">
+    <div class="box box-info">
+        <div class="panel-heading">
+            {:__('报关初始化信息')}
+        </div>
+        <div class="panel-body">
+<!--            <div class="alert alert-danger-light">-->
+<!--                <b>温馨提示</b><br>-->
+<!--                默认我们的fieldlist只有一维数组，为键值形式，如果需要二维数组，可使用下面的自定义模板来实现<br>-->
+<!--                默认追加的元素是没有进行事件绑定的，我们需要监听btn-append这个按钮的fa.event.appendfieldlist事件<br>-->
+<!--                <b>下面的演示textarea为了便于调试，设置为可见的，实际使用中应该添加个hidden的class进行隐藏</b>-->
+<!--            </div>-->
+            <form id="edit-form" class="form-horizontal" role="form" data-toggle="validator" method="POST" action="">
+
+                <dl class="fieldlist" data-name="row[content]">
+                    <dd>
+                        <ins>键名</ins>
+                        <ins>键值</ins>
+                    </dd>
+                    <dd>
+                        <a href="javascript:;" class="btn btn-sm btn-success btn-append"><i class="fa fa-plus"></i> 追加</a>
+                    </dd>
+                    <textarea name="row[content]" class="form-control hide"   cols="50" rows="5">{$row.content}</textarea>
+                </dl>
+                <div class="form-group layer-footer">
+                    <label class="control-label col-xs-12 col-sm-2"></label>
+                    <div class="col-xs-12 col-sm-8">
+                        <button type="submit" class="btn btn-success btn-embossed disabled">{:__('OK')}</button>
+                        <button type="reset" class="btn btn-default btn-embossed">{:__('Reset')}</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+</div>

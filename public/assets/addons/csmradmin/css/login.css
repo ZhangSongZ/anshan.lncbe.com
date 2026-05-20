@@ -1,0 +1,51 @@
+.login-section .logon-tab {
+  margin: 0px;
+  
+}
+.login-section .logon-tab > a {
+  display: block;
+  padding: 20px;
+  float: left;
+  width: 50%;
+  font-size: 16px;
+  text-align: center;
+  background-color: #f1f4fd36;/*v1.0.1 兼容fa1.2.0版本显示不兼容问题*/
+  color:#9c9c9c;
+  -webkit-transition: all 0.3s ease;
+  -moz-transition: all 0.3s ease;
+  -o-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+.login-section .logon-tab > a:hover {
+ 
+  background:rgba(255,255,255, 0.2);
+  -webkit-transition: all 0.3s ease;
+  -moz-transition: all 0.3s ease;
+  -o-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+.login-section .logon-tab > a.active {
+    background-color: white;/*v1.0.1 兼容fa1.2.0版本显示不兼容问题*/
+    color: #000;/*v1.0.1 兼容fa1.2.0版本显示不兼容问题*/
+  -webkit-transition: all 0.3s ease;
+  -moz-transition: all 0.3s ease;
+  -o-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+  
+}
+
+
+#register-form {
+    margin-top:20px;
+    padding: 40px 30px;
+}
+#register-form .input-group {
+    margin-bottom:15px;
+}
+
+#ccode-sending,#ccode-sended{
+  display: none;
+}
+#btn-registered{
+  display: none;
+}

@@ -1,0 +1,204 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OCS物流面单</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+        body {
+            display: flex;
+            justify-content: center;
+
+            min-height: 100vh;
+            background: #f5f5f5;
+            padding: 5px;
+        }
+        .waybill {
+            width: 350px;
+            height: 350px;
+            /*border: 2px solid #0066cc;*/
+            padding: 2px;
+            background: white;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 15px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid #ccc;
+        }
+        .header h1 {
+            font-size: 18px;
+            font-weight: bold;
+            color: #0066cc;
+            margin-bottom: 3px;
+        }
+        .waybill-number {
+            font-size: 12px;
+            font-weight: bold;
+        }
+        .info-section {
+            margin-bottom: 12px;
+        }
+        .section-title {
+            font-size: 12px;
+            font-weight: bold;
+            background: #f0f8ff;
+            padding: 3px 8px;
+            margin-bottom: 6px;
+            border-left: 3px solid #0066cc;
+        }
+        .info-row {
+            display: flex;
+            margin-bottom: 3px;
+            font-size: 10px;
+        }
+        .info-label {
+            width: 40px;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+        .info-content {
+            flex: 1;
+            word-break: break-all;
+        }
+        .two-column {
+            display: flex;
+            gap: 15px;
+        }
+        .column {
+            flex: 1;
+        }
+        .package-info {
+            display: flex;
+            gap: 8px;
+            margin-top: 8px;
+        }
+        .package-item {
+            flex: 1;
+            /*text-align: center;*/
+            padding: 5px;
+            /*border: 1px solid #ddd;*/
+            /*background: #f9f9f9;*/
+            font-size: 9px;
+        }
+        .barcode-area {
+            text-align: center;
+            margin: 20px 0;
+            padding: 5px;
+
+        }
+        .notes {
+            font-size: 8px;
+            color: #666;
+            margin-top: 10px;
+            line-height: 1.2;
+        }
+        .barcode-text {
+            font-family: monospace;
+            font-size: 10px;
+            letter-spacing: 1px;
+        }
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+            /*.waybill {*/
+            /*    border: 2px solid #000;*/
+            /*    box-shadow: none;*/
+            /*}*/
+        }
+    </style>
+</head>
+<body>
+{volist name="row" id="vo"}
+<div class="waybill">
+
+    <!--    <div class="header">-->
+    <!--        <h1>OCS物流面单</h1>-->
+    <!--        <div class="waybill-number">{$vo.logisticsNo}</div>-->
+    <!--    </div>-->
+
+    <div class="barcode-area">
+        <p> <img src="http://dl.lncbe.com/test_code128.php?text={$vo.logisticsNo}" alt="小条形码" style="width: 300px; height: 120px;"></p>
+
+    </div>
+
+<!--    <div class="two-column">-->
+<!--        <div class="column">-->
+<!--            <div class="info-section">-->
+<!--                <div class="section-title">Shipper</div>-->
+<!--                <div class="info-row">-->
+<!--                    <div class="info-label">Name：</div>-->
+<!--                    <div class="info-content">JIN****UN</div>-->
+<!--                </div>-->
+<!--                <div class="info-row">-->
+<!--                    <div class="info-label">Tel：</div>-->
+<!--                    <div class="info-content">130****20</div>-->
+<!--                </div>-->
+<!--                <div class="info-row">-->
+<!--                    <div class="info-label">Address：</div>-->
+<!--                    <div class="info-content">&nbsp; ROOM******SHENYANG</div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+
+<!--        <div class="column">-->
+<!--            <div class="info-section">-->
+<!--                <div class="section-title">Receiver</div>-->
+<!--                <div class="info-row">-->
+<!--                    <div class="info-label">Name：</div>-->
+<!--                    <div class="info-content">{$vo.consigneeNameImp}</div>-->
+<!--                </div>-->
+<!--                <div class="info-row">-->
+<!--                    <div class="info-label">Tel：</div>-->
+<!--                    <div class="info-content">{$vo.consigneeTel}</div>-->
+<!--                </div>-->
+<!--                <div class="info-row">-->
+<!--                    <div class="info-label">Address：</div>-->
+<!--                    <div class="info-content">&nbsp; {$vo.consigneeAddressImp}</div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+    <div style="margin-top:140px"></div>
+    <div class="info-section">
+<!--        <div class="section-title">Shipment Information </div>-->
+        <div class="package-info">
+            <div class="package-item">
+<!--                <div>商品名称</div>-->
+                {if condition="($vo.product_name=='珍珠钻石领子')"}
+                <div style="font-weight: bold; margin-left: 30px">sku 衿 <br>qty 1</div>
+                {else /}
+                <div style="font-weight: bold; margin-left: 30px" >sku {$vo.product_name}  <br>qty 1</div>
+                {/if}
+
+
+
+            </div>
+            <div class="package-item">
+<!--                <div>件数</div>-->
+                <div style="font-weight: bold;">Transit Warehouse Exclusive Shipping Label</div>
+            </div>
+            <!--            <div class="package-item">-->
+            <!--                <div>服务</div>-->
+            <!--                <div style="font-weight: bold;">标准快递</div>-->
+            <!--            </div>-->
+        </div>
+    </div>
+
+
+
+
+</div>
+{/volist}
+</body>
+</html>

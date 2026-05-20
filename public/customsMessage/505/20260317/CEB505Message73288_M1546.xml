@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ceb:CEB505Message guid='41267B8E-4324-D3A0-3E32-86F49C1A6B21' version='1.0' xmlns:ceb='http://www.chinaport.gov.cn/ceb' xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'>
+<ceb:Logistics>
+    <ceb:guid>47F8616C-7A4E-9B40-6567-3FC547306A9D</ceb:guid>
+    <ceb:appType>1</ceb:appType>
+    <ceb:appTime>20260317154602</ceb:appTime>
+    <ceb:appStatus>2</ceb:appStatus>
+    <ceb:logisticsCode>3</ceb:logisticsCode>
+    <ceb:logisticsName>3</ceb:logisticsName>
+    <ceb:logisticsNo>UU437258757CN</ceb:logisticsNo>
+    <ceb:freight>0</ceb:freight>
+    <ceb:insuredFee>0</ceb:insuredFee>
+    <ceb:currency>142</ceb:currency>
+    <ceb:grossWeight>0.017</ceb:grossWeight>
+    <ceb:packNo>1</ceb:packNo>
+    <ceb:goodsInfo>商品信息</ceb:goodsInfo>
+    <ceb:ebcCode>3</ceb:ebcCode>
+    <ceb:ebcName>3</ceb:ebcName>
+    <ceb:ebcTelephone>18041339729</ceb:ebcTelephone>
+    <ceb:note></ceb:note>
+</ceb:Logistics>
+<ceb:Logistics>
+    <ceb:guid>B5DBDE4B-9C98-A188-6898-B9DCCD8B95F7</ceb:guid>
+    <ceb:appType>1</ceb:appType>
+    <ceb:appTime>20260317154602</ceb:appTime>
+    <ceb:appStatus>2</ceb:appStatus>
+    <ceb:logisticsCode>3</ceb:logisticsCode>
+    <ceb:logisticsName>3</ceb:logisticsName>
+    <ceb:logisticsNo>UU438278435CN</ceb:logisticsNo>
+    <ceb:freight>0</ceb:freight>
+    <ceb:insuredFee>0</ceb:insuredFee>
+    <ceb:currency>142</ceb:currency>
+    <ceb:grossWeight>0.064</ceb:grossWeight>
+    <ceb:packNo>1</ceb:packNo>
+    <ceb:goodsInfo>商品信息</ceb:goodsInfo>
+    <ceb:ebcCode>3</ceb:ebcCode>
+    <ceb:ebcName>3</ceb:ebcName>
+    <ceb:ebcTelephone>18041339729</ceb:ebcTelephone>
+    <ceb:note></ceb:note>
+</ceb:Logistics>
+    <ceb:BaseTransfer>
+        <ceb:copCode>3</ceb:copCode>
+        <ceb:copName>3</ceb:copName>
+        <ceb:dxpMode>DXP</ceb:dxpMode>
+        <ceb:dxpId>DXPENT0000018238</ceb:dxpId>
+        <ceb:note></ceb:note>
+    </ceb:BaseTransfer>
+</ceb:CEB505Message>

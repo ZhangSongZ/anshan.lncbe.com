@@ -1,0 +1,152 @@
+
+<style type="text/css">
+    #myTabs li p {
+        padding-top: 5px;
+        margin-bottom: 0px;
+        font-weight: 600;
+        font-size: 15px;
+    }
+    #myTabs li a{
+        height: 128px;
+    }
+
+
+    .pro-img img {
+        width: 70px;
+        /*width: 100%;*/
+    }
+
+
+    .question label {
+        transform-origin: left center;
+        color: #4E73DF;
+        font-weight: 100;
+        /*letter-spacing: 0.01em;*/
+        font-size: 13px;
+        box-sizing: border-box;
+        padding: 8px 15px;
+        display: block;
+        position: absolute;
+        margin-top: -40px;
+        z-index: 2;
+        pointer-events: none;
+        font-weight: 400;
+    }
+    .question small{
+        font-size: 13px;
+        box-sizing: border-box;
+        padding: 8px 15px;
+        display: block;
+        position: absolute;
+        margin-top: -40px;
+        margin-left: 80px;
+        z-index: 2;
+        color:#0c8adf;
+        margin-left:200px;
+    }
+    .question input[type="text"] {
+        appearance: none;
+        border: 1px solid #4E73DF;
+        line-height: 0;
+        font-size: 15px;
+        width: 100%;
+        display: block;
+        box-sizing: border-box;
+        padding: 10px 15px;
+        border-radius: 60px;
+        color: #4E73DF;
+        font-weight: 100;
+        letter-spacing: 0.01em;
+        position: relative;
+        z-index: 1;
+
+    }
+    .question input[type="text"]:focus {
+        outline: none;
+        background-image:linear-gradient( 135deg, #66B3FF 10%, #0066CC 100%) !important;
+        color: white;
+        margin-top: 30px;
+    }
+    .question input[type="text"]:valid {
+        margin-top: 30px;
+    }
+    .question input[type="text"]:focus ~ label {
+        -moz-transform: translate(0, -35px);
+        -ms-transform: translate(0, -35px);
+        -webkit-transform: translate(0, -35px);
+        transform: translate(0, -35px);
+    }
+    .question input[type="text"]:valid ~ label {
+        /*text-transform: uppercase;*/
+        /*font-style: italic;*/
+
+        -moz-transform: translate(0px, -35px) scale(1);
+        -ms-transform: translate(0px, -35px) scale(1);
+        -webkit-transform: translate(0px, -35px) scale(1);
+        transform: translate(0px, -35px) scale(1);
+    }
+
+
+    .liebiao{
+        margin-top:50px;
+        margin-left:50px;
+        border: 1px solid #4E73DF;
+        line-height: 0;
+        font-size: 15px;
+        display: block;
+        box-sizing: border-box;
+        padding: 10px 15px;
+        border-radius: 30px;
+        color: #4E73DF;
+        font-weight: 100;
+    }
+
+</style>
+
+
+<div class="panel panel-default panel-intro">
+    {:build_heading()}
+    <div class="panel-heading" style='background-image:linear-gradient( 135deg, #66B3FF 10%, #0066CC 100%) !important;'>
+        <div class="panel-lead" style='color:#0066CC'><em>数据统计</em></div>
+    </div>
+    <div class="panel-body">
+          <div class="col-xs-11 liebiao">
+                        <div class="table-responsive" data-pattern="priority-columns">
+                            <table class="table">
+                                <thead>
+                                <tr>
+                                    <th class="text-center">序号</th>
+                                    <th class="text-center">提运单号</th>
+                                    <th class="text-center">大包数</th>
+                                    <th class="text-center">小件数</th>
+                                    <th class="text-center">总金额</th>
+                                    <th class="text-center">总毛重</th>
+                                    <th class="text-center">导入时间</th>
+
+                                </tr>
+                                </thead>
+                                <tbody id="txtHint">
+
+                                {volist name='order' id='vos'}
+                                <tr>
+                                    <td class="text-center">{$vos.id}</td>
+                                    <td class="text-center">{$vos.billNo}</td>
+                                    <td class="text-center">{$vos.countpack}</td>
+                                    <td class="text-center">{$vos.countlogis}</td>
+                                    <td class="text-center">{$vos.allmoeny}</td>
+                                    <td class="text-center">{$vos.allWeight}</td>
+                                    <td class="text-center">{$vos.time|date='Y-m-d H:i:s',###}</td>
+                                </tr>
+                                {/volist}
+                                 </tbody>
+                            </table>
+
+                        </div>
+                      <div class="text-center">
+                          {$paginator->render()}
+                      </div>
+                 </div>
+    </div>
+</div>
+
+

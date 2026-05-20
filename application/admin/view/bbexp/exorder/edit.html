@@ -1,0 +1,365 @@
+<form id="edit-form" class="form-horizontal" role="form" data-toggle="validator" method="POST" action="">
+
+    <!-- 第一行：4列布局 -->
+    <div class="row">
+        <div class="col-md-4">
+            <div class="form-group">
+                <label class="control-label col-xs-12 col-sm-4">{:__('Order_number')}:</label>
+                <div class="col-xs-12 col-sm-8">
+                    <input id="c-order_number" data-rule="required" class="form-control" name="row[order_number]" type="text" value="{$row.order_number|htmlentities}">
+                </div>
+            </div>
+        </div>
+<!-- 		<div class="col-md-4">
+            <div class="form-group">
+                <label class="control-label col-xs-12 col-sm-4">{:__('Client_seq_no')}:</label>
+                <div class="col-xs-12 col-sm-8">
+                    <input id="c-client_seq_no" class="form-control" name="row[client_seq_no]" type="text" value="{$row.client_seq_no|htmlentities}">
+                </div>
+            </div>
+        </div> -->
+		<div class="col-md-4">
+            <div class="form-group">
+                <label class="control-label col-xs-12 col-sm-4">{:__('订单备注')}:</label>
+                <div class="col-xs-12 col-sm-8">
+                    <input id="c-note" class="form-control" name="row[note]" type="text" value="{$row.note|htmlentities}">
+                </div>
+            </div>
+        </div>
+		<div class="col-md-4">
+            <div class="form-group">
+                <label class="control-label col-xs-12 col-sm-4">{:__('Bill_no')}:</label>
+                <div class="col-xs-12 col-sm-8">
+                    <input id="c-bill_no" class="form-control" name="row[bill_no]" type="text" value="{$row.bill_no|htmlentities}">
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- 第二行：4列布局 -->
+    <div class="row">
+	    <div class="col-md-4">
+            <div class="form-group">
+                <label class="control-label col-xs-12 col-sm-4">{:__('Agent_code')}:</label>
+                <div class="col-xs-12 col-sm-8">
+                    <input id="c-agent_code" class="form-control" name="row[agent_code]" type="text" value="{$row.agent_code|htmlentities}" data-url="{:url('company/agent/checkCode')}">
+                </div>
+            </div>
+        </div>
+		<div class="col-md-4">
+            <div class="form-group">
+                <label class="control-label col-xs-12 col-sm-4">{:__('Agent_name')}:</label>
+                <div class="col-xs-12 col-sm-8">
+                    <input id="c-agent_name" class="form-control" name="row[agent_name]" type="text" value="{$row.agent_name|htmlentities}">
+                </div>
+            </div>
+        </div>
+		<div class="col-md-4">
+            <div class="form-group">
+                <label class="control-label col-xs-12 col-sm-4">{:__('申报单位信用代码')}:</label>
+                <div class="col-xs-12 col-sm-8">
+                    <!-- <input id="c-agent_id" min="0" data-rule="required" data-source="agent/index" class="form-control selectpage" name="row[agent_id]" type="text" value="{$row.agent_id|htmlentities}"> -->
+					<input id="c-agent_scc" class="form-control" name="row[agent_scc]" type="text" value="{$row.agent_scc|htmlentities}">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 第三行：4列布局 -->
+    <div class="row">
+	    <div class="col-md-4">
+            <div class="form-group">
+                <label class="control-label col-xs-12 col-sm-4">{:__('生产销售单位代码')}:</label>
+                <div class="col-xs-12 col-sm-8">
+                    <input id="c-owner_code" class="form-control" name="row[owner_code]" type="text" value="{$row.owner_code|htmlentities}" data-url="{:url('company/Owner/checkCode')}">
+                </div>
+            </div>
+        </div>
+		<div class="col-md-4">
+            <div class="form-group">
+                <label class="control-label col-xs-12 col-sm-4">{:__('生产销售单位名称')}:</label>
+                <div class="col-xs-12 col-sm-8">
+                    <input id="c-owner_name" class="form-control" name="row[owner_name]" type="text" value="{$row.owner_name|htmlentities}">
+                </div>
+            </div>
+        </div>
+		<div class="col-md-4">
+            <div class="form-group">
+                <label class="control-label col-xs-12 col-sm-4">{:__('生产销售单位信用代码')}:</label>
+                <div class="col-xs-12 col-sm-8">
+                    <input id="c-owner_scc" class="form-control" name="row[owner_scc]" type="text" value="{$row.owner_scc|htmlentities}">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 第四行：4列布局 -->
+    <div class="row">
+	    <div class="col-md-4">
+            <div class="form-group">
+                <label class="control-label col-xs-12 col-sm-4">{:__('境内收发货人代码')}:</label>
+                <div class="col-xs-12 col-sm-8">
+                    <input id="c-ebc_code" class="form-control" name="row[ebc_code]" type="text" value="{$row.ebc_code|htmlentities}" data-url="{:url('company/ecompany/checkCode')}">
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                <label class="control-label col-xs-12 col-sm-4">{:__('境内收发货人名称')}:</label>
+                <div class="col-xs-12 col-sm-8">
+                    <input id="c-ebc_name" class="form-control" name="row[ebc_name]" type="text" value="{$row.ebc_name|htmlentities}">
+                </div>
+            </div>
+        </div>
+		<div class="col-md-4">
+            <div class="form-group">
+                <label class="control-label col-xs-12 col-sm-4">{:__('境内收发货人信用代码')}:</label>
+                <div class="col-xs-12 col-sm-8">
+                    <input id="c-trade_scc" class="form-control" name="row[trade_scc]" type="text" value="{$row.trade_scc|htmlentities}">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 第五行：4列布局 -->
+    <div class="row">
+        <div class="col-md-4">
+            <div class="form-group">
+                <label class="control-label col-xs-12 col-sm-4">{:__('Customs_code')}:</label>
+                <div class="col-xs-12 col-sm-8">
+                    <input id="c-customs_code" class="form-control" name="row[customs_code]" type="text" value="{$row.customs_code|htmlentities}">
+                </div>
+            </div>
+        </div>
+		<div class="col-md-4">
+            <div class="form-group">
+                <label class="control-label col-xs-12 col-sm-4">{:__('Port_code')}:</label>
+                <div class="col-xs-12 col-sm-8">
+                    <input id="c-port_code" class="form-control" name="row[port_code]" type="text" value="{$row.port_code|htmlentities}">
+                </div>
+            </div>
+        </div>
+		<div class="col-md-4">
+            <div class="form-group">
+                <label class="control-label col-xs-12 col-sm-4">{:__('运输工具名称')}:</label>
+                <div class="col-xs-12 col-sm-8">
+                    <input id="c-traf_name" class="form-control" name="row[traf_name]" type="text" value="{$row.traf_name|htmlentities}">
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 第六行：4列布局 -->
+    <div class="row">
+	    <div class="col-md-4">
+            <div class="form-group">
+                <label class="control-label col-xs-12 col-sm-4">{:__('Country_cname')}:</label>
+                <div class="col-xs-12 col-sm-8">
+                    <input id="c-country_cname" class="form-control" name="row[country_cname]" type="text" value="{$row.country_cname|htmlentities}" data-url="{:url('datadictionary/Country/search')}">
+                	<!-- 新增两个隐藏字段 -->
+					<input type="hidden" id="c-consignee_country" name="row[consignee_country]" value="">
+					<input type="hidden"  id="c-country_code" name="row[country_code]" value="">
+				</div>
+            </div>
+        </div>
+		<div class="col-md-4">
+            <div class="form-group">
+                <label class="control-label col-xs-12 col-sm-4">{:__('Desp_port_code')}:</label>
+                <div class="col-xs-12 col-sm-8">
+                    <input id="c-desp_port_code" class="form-control" name="row[desp_port_code]" type="text" value="{$row.desp_port_code|htmlentities}">
+                </div>
+            </div>
+        </div>
+	    <div class="col-md-4">
+            <div class="form-group">
+                <label class="control-label col-xs-12 col-sm-4">{:__('航次号')}:</label>
+                <div class="col-xs-12 col-sm-8">
+                    <input id="c-voy_no" class="form-control" name="row[voy_no]" type="text" value="{$row.voy_no|htmlentities}">
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 第七行：4列布局 -->
+    <div class="row">
+	    <div class="col-md-4">
+            <div class="form-group">
+                <label class="control-label col-xs-12 col-sm-4">{:__('Traf_mode')}:</label>
+                <div class="col-xs-12 col-sm-8">
+                    <input id="c-traf_mode" class="form-control" name="row[traf_mode]" type="text" value="{$row.traf_mode|htmlentities}">
+                </div>
+            </div>
+        </div>
+		<div class="col-md-4">
+            <div class="form-group">
+                <label class="control-label col-xs-12 col-sm-4">{:__('Trans_mode')}:</label>
+                <div class="col-xs-12 col-sm-8">
+                    <input id="c-trans_mode" class="form-control" name="row[trans_mode]" type="text" value="{$row.trans_mode|htmlentities}">
+                </div>
+            </div>
+        </div>
+
+		<div class="col-md-4">
+            <div class="form-group">
+                <label class="control-label col-xs-12 col-sm-4">{:__('指运港代码')}:</label>
+                <div class="col-xs-12 col-sm-8">
+                    <input id="c-edistinate_port" class="form-control" name="row[edistinate_port]" type="text" value="{$row.edistinate_port|htmlentities}">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 第八行：4列布局 -->
+    <div class="row">
+	    <div class="col-md-4">
+            <div class="form-group">
+                <label class="control-label col-xs-12 col-sm-4">{:__('Pack_no')}:</label>
+                <div class="col-xs-12 col-sm-8">
+                    <input id="c-pack_no" class="form-control" name="row[pack_no]" type="text" value="{$row.pack_no|htmlentities}">
+                </div>
+            </div>
+        </div>
+		<div class="col-md-4">
+            <div class="form-group">
+                <label class="control-label col-xs-12 col-sm-4">{:__('Weight')}:</label>
+                <div class="col-xs-12 col-sm-8">
+                    <input id="c-weight" class="form-control" step="0.001" name="row[weight]" type="number" value="{$row.weight|htmlentities}">
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                <label class="control-label col-xs-12 col-sm-4">{:__('Net_weight')}:</label>
+                <div class="col-xs-12 col-sm-8">
+                    <input id="c-net_weight" class="form-control" step="0.001" name="row[net_weight]" type="number" value="{$row.net_weight|htmlentities}">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 第九行：4列布局 -->
+    <div class="row">
+		<div class="col-md-4">
+            <div class="form-group">
+                <label class="control-label col-xs-12 col-sm-4">{:__('运费标记')}:</label>
+                <div class="col-xs-12 col-sm-8">
+                     <input id="c-fee_mark" class="form-control" name="row[fee_mark]" type="text" value="{$row.fee_mark|htmlentities}">
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                <label class="control-label col-xs-12 col-sm-4">{:__('Freight')}:</label>
+                <div class="col-xs-12 col-sm-8">
+                    <input id="c-freight" class="form-control" step="0.001" name="row[freight]" type="number" value="{$row.freight|htmlentities}">
+                </div>
+            </div>
+        </div>
+		<div class="col-md-4">
+            <div class="form-group">
+                <label class="control-label col-xs-12 col-sm-4">{:__('Freight_currency')}:</label>
+                <div class="col-xs-12 col-sm-8">
+                    <input id="c-freight_currency" class="form-control" name="row[freight_currency]" type="number" value="{$row.freight_currency|htmlentities}">
+                </div>
+            </div>
+        </div>
+    </div>
+	<div class="row">
+		<div class="col-md-4">
+            <div class="form-group">
+                <label class="control-label col-xs-12 col-sm-4">{:__('杂费标记')}:</label>
+                <div class="col-xs-12 col-sm-8">
+                     <input id="c-other_mark" class="form-control" name="row[other_mark]" type="text" value="{$row.other_mark|htmlentities}">
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                <label class="control-label col-xs-12 col-sm-4">{:__('杂费')}:</label>
+                <div class="col-xs-12 col-sm-8">
+                    <input id="c-other_rate" class="form-control" step="0.001" name="row[other_rate]" type="number" value="{$row.other_rate|htmlentities}">
+                </div>
+            </div>
+        </div>
+		<div class="col-md-4">
+            <div class="form-group">
+                <label class="control-label col-xs-12 col-sm-4">{:__('杂费币制')}:</label>
+                <div class="col-xs-12 col-sm-8">
+                    <input id="c-other_curr" class="form-control" name="row[other_curr]" type="number" value="{$row.other_curr|htmlentities}">
+                </div>
+            </div>
+        </div>
+	</div>
+
+    <!-- 第十行：4列布局 -->
+    <div class="row">
+	    <div class="col-md-4">
+            <div class="form-group">
+                <label class="control-label col-xs-12 col-sm-4">{:__('Ebp_code')}:</label>
+                <div class="col-xs-12 col-sm-8">
+                    <input id="c-ebp_code" class="form-control" name="row[ebp_code]" type="text" value="{$row.ebp_code|htmlentities}">
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                <label class="control-label col-xs-12 col-sm-4">{:__('Ebp_name')}:</label>
+                <div class="col-xs-12 col-sm-8">
+                    <input id="c-ebp_name" class="form-control" name="row[ebp_name]" type="text" value="{$row.ebp_name|htmlentities}">
+                </div>
+            </div>
+        </div>
+		<div class="col-md-4">
+            <div class="form-group">
+                <label class="control-label col-xs-12 col-sm-4">{:__('Contr_no')}:</label>
+                <div class="col-xs-12 col-sm-8">
+                    <input id="c-contr_no" class="form-control" name="row[contr_no]" type="text" value="{$row.contr_no|htmlentities}">
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 第十一行：4列布局 -->
+    <div class="row">
+		<div class="col-md-4">
+            <div class="form-group">
+                <label class="control-label col-xs-12 col-sm-4">{:__('Wrap_type')}:</label>
+                <div class="col-xs-12 col-sm-8">
+                    <input id="c-wrap_type" class="form-control" name="row[wrap_type]" type="text" value="{$row.wrap_type|htmlentities}">
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+                <div class="form-group">
+                <label class="control-label col-xs-12 col-sm-4">{:__('境外收发货人英文名称')}:</label>
+                <div class="col-xs-12 col-sm-8">
+                    <input id="c-overseas_consignee_ename" class="form-control" name="row[overseas_consignee_ename]" type="text" value="{$row.overseas_consignee_ename|htmlentities}">
+                </div>
+            </div>
+        </div>
+		<div class="col-md-4">
+            <div class="form-group">
+                <label class="control-label col-xs-12 col-sm-4">{:__('Cut_mode')}:</label>
+                <div class="col-xs-12 col-sm-8">
+                <input id="c-cut_mode" class="form-control" name="row[cut_mode]" type="text" value="{$row.cut_mode|htmlentities}">
+                </div>
+            </div>
+        </div>
+    </div>
+	<div class="row">
+		<div class="col-md-4">
+            <div class="form-group">
+                <label class="control-label col-xs-12 col-sm-4">{:__('报关单备注')}:</label>
+                <div class="col-xs-12 col-sm-8">
+                    <input id="c-notes" class="form-control" name="row[notes]" type="text" value="{$row.notes|htmlentities}">
+                </div>
+            </div>
+        </div>
+	</div>
+    <!-- 底部按钮 -->
+    <div class="form-group layer-footer">
+        <label class="control-label col-xs-12 col-sm-2"></label>
+        <div class="col-xs-12 col-sm-8">
+            <button type="submit" class="btn btn-primary btn-embossed">{:__('OK')}</button>
+            <button type="reset" class="btn btn-default btn-embossed">{:__('Reset')}</button>
+        </div>
+    </div>
+</form>

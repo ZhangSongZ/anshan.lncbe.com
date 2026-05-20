@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ceb:CEB509Message guid='1E93E4D7-E8B3-7AF1-672B-1F757C42C43A' version='1.0' xmlns:ceb='http://www.chinaport.gov.cn/ceb' xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'>
+<ceb:Departure>
+  <ceb:DepartureHead>
+    <ceb:guid>CC3B980C-EF18-CC88-3967-EAE743318E22</ceb:guid>
+    <ceb:appType>1</ceb:appType>
+    <ceb:appTime>20260320103224</ceb:appTime>
+    <ceb:appStatus>2</ceb:appStatus>
+    <ceb:customsCode>3</ceb:customsCode>
+    <ceb:copNo>B20260317030137609254018</ceb:copNo>
+    <ceb:logisticsCode>3</ceb:logisticsCode>
+    <ceb:logisticsName>3</ceb:logisticsName>
+    <ceb:trafMode>3</ceb:trafMode>
+    <ceb:trafName>X8059</ceb:trafName>
+    <ceb:voyageNo>X8059</ceb:voyageNo>
+    <ceb:billNo>AG10177811</ceb:billNo>
+    <ceb:leaveTime>20260320103224</ceb:leaveTime>
+    <ceb:msgCount>1</ceb:msgCount>
+    <ceb:msgSeqNo>1</ceb:msgSeqNo>
+    <ceb:note></ceb:note>
+</ceb:DepartureHead>
+<ceb:DepartureList>
+    <ceb:gnum>1</ceb:gnum>
+    <ceb:totalPackageNo></ceb:totalPackageNo>
+    <ceb:logisticsNo>UU437258757CN</ceb:logisticsNo>
+    <ceb:note></ceb:note>
+</ceb:DepartureList>
+<ceb:DepartureList>
+    <ceb:gnum>2</ceb:gnum>
+    <ceb:totalPackageNo></ceb:totalPackageNo>
+    <ceb:logisticsNo>UU438278435CN</ceb:logisticsNo>
+    <ceb:note></ceb:note>
+</ceb:DepartureList>
+</ceb:Departure>
+    <ceb:BaseTransfer>
+        <ceb:copCode>3</ceb:copCode>
+        <ceb:copName>3</ceb:copName>
+        <ceb:dxpMode>DXP</ceb:dxpMode>
+        <ceb:dxpId>DXPENT0000018238</ceb:dxpId>
+        <ceb:note></ceb:note>
+    </ceb:BaseTransfer>
+</ceb:CEB509Message>

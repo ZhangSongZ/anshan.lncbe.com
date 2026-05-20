@@ -1,0 +1,63 @@
+<form id="edit-form" class="form-horizontal" role="form" data-toggle="validator" method="POST" action="">
+
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Hscode')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-hscode" data-rule="required" class="form-control" name="row[hscode]" type="text" value="{$row.hscode|htmlentities}">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Hsname')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-hsname" data-rule="required" class="form-control" name="row[hsname]" type="text" value="{$row.hsname|htmlentities}">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Unit')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-unit" data-rule="required" class="form-control" name="row[unit]" type="text" value="{$row.unit|htmlentities}">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Unit1')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-unit1" data-rule="required" class="form-control" name="row[unit1]" type="text" value="{$row.unit1|htmlentities}">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Unit2')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-unit2" data-rule="required" class="form-control" name="row[unit2]" type="text" value="{$row.unit2|htmlentities}">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Tax_code')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-tax_code" data-rule="required" class="form-control" name="row[tax_code]" type="text" value="{$row.tax_code|htmlentities}">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Excise_tax')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-excise_tax" data-rule="required" class="form-control" step="0.001" name="row[excise_tax]" type="number" value="{$row.excise_tax|htmlentities}">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Increment_tax')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-increment_tax" data-rule="required" class="form-control" step="0.001" name="row[increment_tax]" type="number" value="{$row.increment_tax|htmlentities}">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Consolidated_tax')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-consolidated_tax" data-rule="required" class="form-control" step="0.001" name="row[consolidated_tax]" type="number" value="{$row.consolidated_tax|htmlentities}">
+        </div>
+    </div>
+    <div class="form-group layer-footer">
+        <label class="control-label col-xs-12 col-sm-2"></label>
+        <div class="col-xs-12 col-sm-8">
+            <button type="submit" class="btn btn-primary btn-embossed disabled">{:__('OK')}</button>
+        </div>
+    </div>
+</form>

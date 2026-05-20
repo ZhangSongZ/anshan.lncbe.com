@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ceb:CEB303Message guid='9D16D3C2-9747-0BEC-03BE-795F9A238073' version='1.0' xmlns:ceb='http://www.chinaport.gov.cn/ceb' xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'>
+    <ceb:Order>
+    <ceb:OrderHead>
+        <ceb:guid>85696690-FC9B-BC28-B2E2-E365B4644145</ceb:guid>
+        <ceb:appType>1</ceb:appType>
+        <ceb:appTime>20260325122316</ceb:appTime>
+        <ceb:appStatus>2</ceb:appStatus>
+        <ceb:orderType>W</ceb:orderType>
+        <ceb:orderNo>9826M-606B4</ceb:orderNo>
+        <ceb:ebpCode>无</ceb:ebpCode>
+        <ceb:ebpName>AMAZON.COM</ceb:ebpName>
+        <ceb:ebcCode>210166000A</ceb:ebcCode>
+        <ceb:ebcName>辽宁菲戈贝尔国际贸易有限公司</ceb:ebcName>
+        <ceb:goodsValue>45825.858</ceb:goodsValue>
+        <ceb:freight>0</ceb:freight>
+        <ceb:currency>502</ceb:currency>
+        <ceb:note></ceb:note>
+    </ceb:OrderHead>
+    <ceb:OrderList>
+        <ceb:gnum>1</ceb:gnum>
+        <ceb:itemNo>4602199000</ceb:itemNo>
+        <ceb:itemName>工艺品</ceb:itemName>
+        <ceb:itemDescribe>工艺品</ceb:itemDescribe>
+        <ceb:barCode></ceb:barCode>
+        <ceb:unit>007</ceb:unit>
+        <ceb:currency>502</ceb:currency>
+        <ceb:qty>7540.00</ceb:qty>
+        <ceb:price>6.0777</ceb:price>
+        <ceb:totalPrice>45825.858</ceb:totalPrice>
+        <ceb:note></ceb:note>
+    </ceb:OrderList>
+</ceb:Order>
+    <ceb:BaseTransfer>
+        <ceb:copCode>210166000A</ceb:copCode>
+        <ceb:copName>辽宁菲戈贝尔国际贸易有限公司</ceb:copName>
+        <ceb:dxpMode>DXP</ceb:dxpMode>
+        <ceb:dxpId>DXPENT0000023839</ceb:dxpId>
+        <ceb:note></ceb:note>
+    </ceb:BaseTransfer>
+</ceb:CEB303Message>

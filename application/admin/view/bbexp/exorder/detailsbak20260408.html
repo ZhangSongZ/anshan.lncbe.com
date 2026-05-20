@@ -1,0 +1,389 @@
+<div class="panel panel-default panel-intro" style="margin: 0; height: 100%;">
+    <div class="panel-body" style="padding: 20px; overflow-y: auto; max-height: calc(100vh - 100px);">
+        
+        <!-- 订单主表信息 -->
+        <div class="form-horizontal">
+            <div class="page-header" style="margin-top: 0; padding-bottom: 10px;">
+                <h4 style="font-size: 16px; font-weight: bold;">订单基本信息</h4>
+            </div>
+            <div class="row">
+                <div class="col-xs-4">
+                    <div class="form-group">
+                        <label class="control-label col-xs-4">订单号</label>
+                        <div class="col-xs-8">
+                            <p class="form-control-static">{$row.order_number}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-4">
+                    <div class="form-group">
+                        <label class="control-label col-xs-4">客户端编号</label>
+                        <div class="col-xs-8">
+                            <p class="form-control-static">{$row.client_seq_no}</p>
+                        </div>
+                    </div>
+                </div>
+				<div class="col-xs-4">
+                    <div class="form-group">
+                        <label class="control-label col-xs-4">提运单号</label>
+                        <div class="col-xs-8">
+                            <p class="form-control-static">{$row.bill_no}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+			<div class="row">
+                <div class="col-xs-4">
+                    <div class="form-group">
+                        <label class="control-label col-xs-4">申报单位代码</label>
+                        <div class="col-xs-8">
+                            <p class="form-control-static">{$row.agent_code}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-4">
+                    <div class="form-group">
+                        <label class="control-label col-xs-4">申报单位名称</label>
+                        <div class="col-xs-8">
+                            <p class="form-control-static">{$row.agent_name}</p>
+                        </div>
+                    </div>
+                </div>
+				<div class="col-xs-4">
+                    <div class="form-group">
+                        <label class="control-label col-xs-4">申报单位信用代码</label>
+                        <div class="col-xs-8">
+                            <p class="form-control-static">{$row.agent_scc}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+			<div class="row">
+                <div class="col-xs-4">
+                    <div class="form-group">
+                        <label class="control-label col-xs-4">生产销售单位代码</label>
+                        <div class="col-xs-8">
+                            <p class="form-control-static">{$row.owner_code}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-4">
+                    <div class="form-group">
+                        <label class="control-label col-xs-4">生产销售单位名称</label>
+                        <div class="col-xs-8">
+                            <p class="form-control-static">{$row.owner_name}</p>
+                        </div>
+                    </div>
+                </div>
+				<div class="col-xs-4">
+                    <div class="form-group">
+                        <label class="control-label col-xs-4">生产销售单位信用代码</label>
+                        <div class="col-xs-8">
+                            <p class="form-control-static">{$row.agent_scc}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+			<div class="row">
+                <div class="col-xs-4">
+                    <div class="form-group">
+                        <label class="control-label col-xs-4">境内收发货人代码</label>
+                        <div class="col-xs-8">
+                            <p class="form-control-static">{$row.ebc_code}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-4">
+                    <div class="form-group">
+                        <label class="control-label col-xs-4">境内收发货人名称</label>
+                        <div class="col-xs-8">
+                            <p class="form-control-static">{$row.ebc_name}</p>
+                        </div>
+                    </div>
+                </div>
+				<div class="col-xs-4">
+                    <div class="form-group">
+                        <label class="control-label col-xs-4">境内收发货人信用代码</label>
+                        <div class="col-xs-8">
+                            <p class="form-control-static">{$row.trade_scc}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+			<div class="row">
+                <div class="col-xs-4">
+                    <div class="form-group">
+                        <label class="control-label col-xs-4">申报地海关</label>
+                        <div class="col-xs-8">
+                            <p class="form-control-static">{$row.customs_code}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-4">
+                    <div class="form-group">
+                        <label class="control-label col-xs-4">出境关别</label>
+                        <div class="col-xs-8">
+                            <p class="form-control-static">{$row.port_code}</p>
+                        </div>
+                    </div>
+                </div>
+				<div class="col-xs-4">
+                    <div class="form-group">
+                        <label class="control-label col-xs-4">离境口岸</label>
+                        <div class="col-xs-8">
+                            <p class="form-control-static">{$row.desp_port_code}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+			<div class="row">
+                <div class="col-xs-4">
+                    <div class="form-group">
+                        <label class="control-label col-xs-4">运抵国</label>
+                        <div class="col-xs-8">
+                            <p class="form-control-static">{$row.country_cname}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-4">
+                    <div class="form-group">
+                        <label class="control-label col-xs-4">国家代码</label>
+                        <div class="col-xs-8">
+                            <p class="form-control-static">{$row.country_code}</p>
+                        </div>
+                    </div>
+                </div>
+				<div class="col-xs-4">
+                    <div class="form-group">
+                        <label class="control-label col-xs-4">指运港</label>
+                        <div class="col-xs-8">
+                            <p class="form-control-static">{$row.edistinate_port}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+			<div class="row">
+                <div class="col-xs-4">
+                    <div class="form-group">
+                        <label class="control-label col-xs-4">运输方式</label>
+                        <div class="col-xs-8">
+                            <p class="form-control-static">{$row.traf_mode}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-4">
+                    <div class="form-group">
+                        <label class="control-label col-xs-4">成交方式</label>
+                        <div class="col-xs-8">
+                            <p class="form-control-static">{$row.trans_mode}</p>
+                        </div>
+                    </div>
+                </div>
+				<div class="col-xs-4">
+                    <div class="form-group">
+                        <label class="control-label col-xs-4">征免性质</label>
+                        <div class="col-xs-8">
+                            <p class="form-control-static">{$row.cut_mode}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+			<div class="row">
+                <div class="col-xs-4">
+                    <div class="form-group">
+                        <label class="control-label col-xs-4">件数</label>
+                        <div class="col-xs-8">
+                            <p class="form-control-static">{$row.pack_no}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-4">
+                    <div class="form-group">
+                        <label class="control-label col-xs-4">毛重(KG)</label>
+                        <div class="col-xs-8">
+                            <p class="form-control-static">{$row.weight}</p>
+                        </div>
+                    </div>
+                </div>
+				<div class="col-xs-4">
+                    <div class="form-group">
+                        <label class="control-label col-xs-4">净重(KG)</label>
+                        <div class="col-xs-8">
+                            <p class="form-control-static">{$row.net_weight}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+			<div class="row">
+                <div class="col-xs-4">
+                    <div class="form-group">
+                        <label class="control-label col-xs-4">运费标记</label>
+                        <div class="col-xs-8">
+                            <p class="form-control-static">{$row.fee_mark}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-4">
+                    <div class="form-group">
+                        <label class="control-label col-xs-4">运费</label>
+                        <div class="col-xs-8">
+                            <p class="form-control-static">{$row.freight}</p>
+                        </div>
+                    </div>
+                </div>
+				<div class="col-xs-4">
+                    <div class="form-group">
+                        <label class="control-label col-xs-4">运费币值</label>
+                        <div class="col-xs-8">
+                            <p class="form-control-static">{$row.freight_currency}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+			<div class="row">
+                <div class="col-xs-4">
+                    <div class="form-group">
+                        <label class="control-label col-xs-4">杂费标记</label>
+                        <div class="col-xs-8">
+                            <p class="form-control-static">{$row.other_mark}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-4">
+                    <div class="form-group">
+                        <label class="control-label col-xs-4">杂费</label>
+                        <div class="col-xs-8">
+                            <p class="form-control-static">{$row.other_rate}</p>
+                        </div>
+                    </div>
+                </div>
+				<div class="col-xs-4">
+                    <div class="form-group">
+                        <label class="control-label col-xs-4">杂费币制</label>
+                        <div class="col-xs-8">
+                            <p class="form-control-static">{$row.other_curr}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+			<div class="row">
+                <div class="col-xs-4">
+                    <div class="form-group">
+                        <label class="control-label col-xs-4">平台企业代码</label>
+                        <div class="col-xs-8">
+                            <p class="form-control-static">{$row.ebp_code}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-4">
+                    <div class="form-group">
+                        <label class="control-label col-xs-4">平台企业名称</label>
+                        <div class="col-xs-8">
+                            <p class="form-control-static">{$row.ebp_name}</p>
+                        </div>
+                    </div>
+                </div>
+				<div class="col-xs-4">
+                    <div class="form-group">
+                        <label class="control-label col-xs-4">合同协议号</label>
+                        <div class="col-xs-8">
+                            <p class="form-control-static">{$row.contr_no}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+			<div class="row">
+                <div class="col-xs-4">
+                    <div class="form-group">
+                        <label class="control-label col-xs-4">包装种类</label>
+                        <div class="col-xs-8">
+                            <p class="form-control-static">{$row.wrap_type}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-4">
+                    <div class="form-group">
+                        <label class="control-label col-xs-4">境外收发货人英文名称</label>
+                        <div class="col-xs-8">
+                            <p class="form-control-static">{$row.overseas_consignee_ename}</p>
+                        </div>
+                    </div>
+                </div>
+				<div class="col-xs-4">
+                    <div class="form-group">
+                        <label class="control-label col-xs-4">报关单备注</label>
+                        <div class="col-xs-8">
+                            <p class="form-control-static">{$row.notes}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+			
+        </div>
+        
+        <!-- 订单商品列表 -->
+        <div style="margin-top: 30px;">
+            <div class="page-header" style="padding-bottom: 10px;">
+                <h4 style="font-size: 16px; font-weight: bold;">商品明细</h4>
+            </div>
+            
+            <div class="table-responsive">
+                <table class="table table-striped table-bordered table-hover" style="font-size: 14px;">
+                    <thead>
+                        <tr>
+                            <th style="width: 5%;">商品货号</th>
+                            <th style="width: 20%;">商品名称</th>
+                            <th style="width: 5%;">商品编码</th>
+                            <th style="width: 5%;">单价</th>
+                            <th style="width: 5%;">数量</th>
+                            <th style="width: 5%;">总价</th>
+                            <th style="width: 5%;">成交计量单位</th>
+                            <th style="width: 5%;">法定第一数量</th>
+                            <th style="width: 5%;">法定第一单位</th>
+                            <th style="width: 5%;">法定第二数量</th>
+                            <th style="width: 5%;">法定第二单位</th>
+                            <th style="width: 3%;">原产国</th>
+                            <th style="width: 3%;">最终目的国</th>
+                            <th style="width: 3%;">境内货源地</th>
+                            <th style="width: 3%;">征免方式</th>
+                            <th style="width: 15%;">规格型号</th>
+                            <th style="width: 3%;">币制</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {foreach $details as $item}
+                        <tr>
+                            <td>{$item.product_bn}</td>
+                            <td>{$item.product_name}</td>
+                            <td>{$item.gcode}</td>
+                            <td>{$item.price}</td>
+                            <td>{$item.qty}</td>
+                            <td>{$item.total}</td>
+                            <td>{$item.unit}</td>
+                            <td>{$item.qty1}</td>
+                            <td>{$item.unit1}</td>
+                            <td>{$item.qty2}</td>
+                            <td>{$item.unit2}</td>
+                            <td>{$item.destination_country}</td>
+                            <td>{$item.origin_country}</td>
+                            <td>{$item.district_code}</td>
+                            <td>{$item.duty_mode}</td>
+                            <td>{$item.gmodel}</td>
+                            <td>{$item.item_currency}</td>
+                        </tr>
+                        {/foreach}
+                        
+                        {if count($details) == 0}
+                        <tr>
+                            <td colspan="5" class="text-center">暂无商品数据</td>
+                        </tr>
+                        {/if}
+                    </tbody>
+                    <tfoot>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+        
+    </div>
+</div>

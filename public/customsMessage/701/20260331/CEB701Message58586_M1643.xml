@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ceb:CEB701Message guid='971FAC8B-7798-7B75-935D-B375B071E8ED' version='1.0' xmlns:ceb='http://www.chinaport.gov.cn/ceb' xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'>
+<ceb:SummaryApply>
+  <ceb:SummaryApplyHead>
+    <ceb:guid>20C3C825-FBCC-A481-FD77-7B728BF24F5D</ceb:guid>
+    <ceb:appType>1</ceb:appType>
+    <ceb:appTime>20260331164328</ceb:appTime>
+    <ceb:appStatus>2</ceb:appStatus>
+    <ceb:customsCode>21016600FN</ceb:customsCode>
+    <ceb:copNo>B20260331167267694</ceb:copNo>
+    <ceb:preNo></ceb:preNo>
+    <ceb:sumNo></ceb:sumNo>
+    <ceb:agentCode>1</ceb:agentCode>
+    <ceb:agentName>中国邮政速递物流股份有限公司大连市分公司</ceb:agentName>
+    <ceb:ebcCode>21016600FN</ceb:ebcCode>
+    <ceb:ebcName>沈阳博瑞跨境电商有限公司</ceb:ebcName>
+    <ceb:declAgentCode>1</ceb:declAgentCode>
+    <ceb:declAgentName>中国邮政速递物流股份有限公司大连市分公司</ceb:declAgentName>
+    <ceb:loctNo></ceb:loctNo>
+    <ceb:summaryFlag>1</ceb:summaryFlag>
+    <ceb:itemNameFlag>1</ceb:itemNameFlag>
+    <ceb:msgCount>1</ceb:msgCount>
+    <ceb:msgSeqNo>1</ceb:msgSeqNo>
+</ceb:SummaryApplyHead>
+<ceb:SummaryApplyList>
+    <ceb:invtNo></ceb:invtNo>
+</ceb:SummaryApplyList>
+<ceb:SummaryApplyList>
+    <ceb:invtNo></ceb:invtNo>
+</ceb:SummaryApplyList>
+</ceb:SummaryApply>
+    <ceb:BaseTransfer>
+        <ceb:copCode>1</ceb:copCode>
+        <ceb:copName>中国邮政速递物流股份有限公司大连市分公司</ceb:copName>
+        <ceb:dxpMode>DXP</ceb:dxpMode>
+        <ceb:dxpId>DXPENT0000017281</ceb:dxpId>
+    </ceb:BaseTransfer>
+</ceb:CEB701Message>

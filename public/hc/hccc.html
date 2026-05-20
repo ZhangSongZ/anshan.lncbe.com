@@ -1,0 +1,800 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>海城双融合产业园统计大屏 | 固定1280x768</title>
+    <script src="https://cdn.staticfile.net/echarts/4.3.0/echarts.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/echarts@4.3.0/map/js/world.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Microsoft YaHei', 'Segoe UI', sans-serif;
+        }
+
+        body {
+            background: #050b14;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            overflow: hidden;
+        }
+
+        .screen {
+            width: 1280px;
+            height: 768px;
+            background: radial-gradient(circle at center, #0c1b33 0%, #070e1d 100%);
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 0 0 4px rgba(0, 150, 255, 0.2), 0 20px 40px rgba(0, 0, 0, 0.5);
+        }
+
+        .dashboard {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            padding: 12px 20px 8px 20px;
+            overflow: visible;
+        }
+
+        .header {
+            height: 64px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 12px 0 16px;
+            background: rgba(16, 35, 70, 0.35);
+            border-bottom: 1px solid rgba(64, 158, 255, 0.3);
+            border-radius: 8px 8px 0 0;
+            margin-bottom: 12px;
+            backdrop-filter: blur(2px);
+        }
+
+        .main-title {
+            font-size: 28px;
+            font-weight: bold;
+            background: linear-gradient(90deg, #00f2fe, #4facfe);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: 2px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .main-title i {
+            background: none;
+            -webkit-text-fill-color: #4facfe;
+            font-size: 28px;
+        }
+
+        .time-panel {
+            font-size: 16px;
+            color: #b8dcff;
+            display: flex;
+            gap: 20px;
+            background: rgba(0, 0, 0, 0.3);
+            padding: 6px 16px;
+            border-radius: 32px;
+            backdrop-filter: blur(4px);
+        }
+
+        .time-panel span {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .grid-main {
+            flex: 1;
+            display: grid;
+            grid-template-columns: 1fr 1fr 1.2fr 1fr;
+            grid-template-rows: auto auto auto;
+            gap: 12px;
+            min-height: 0;
+        }
+
+        .metrics-area {
+            grid-column: 1 / 3;
+            grid-row: 1 / 2;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+
+        .map-area {
+            grid-column: 3 / 5;
+            grid-row: 1 / 3;
+            min-height: 0;
+        }
+
+        .platform-area {
+            grid-column: 1 / 2;
+            grid-row: 2 / 3;
+        }
+
+        .chart-right {
+            grid-column: 2 / 3;
+            grid-row: 2 / 3;
+        }
+
+        .list-area {
+            grid-column: 1 / 2;
+            grid-row: 3 / 4;
+        }
+
+        .rank-area {
+            grid-column: 2 / 3;
+            grid-row: 3 / 4;
+        }
+
+        .supplier-area {
+            grid-column: 3 / 5;
+            grid-row: 3 / 4;
+        }
+
+        .module-card {
+            background: rgba(12, 28, 50, 0.65);
+            border: 1px solid rgba(64, 158, 255, 0.35);
+            border-radius: 12px;
+            backdrop-filter: blur(2px);
+            padding: 12px 14px;
+            transition: all 0.2s;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .card-header {
+            font-size: 16px;
+            font-weight: bold;
+            color: #5db0ff;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            border-left: 3px solid #40a9ff;
+            padding-left: 10px;
+            flex-shrink: 0;
+            flex-wrap: wrap;
+        }
+        
+        .code-badge {
+            font-size: 11px;
+            background: rgba(64, 158, 255, 0.25);
+            padding: 2px 8px;
+            border-radius: 20px;
+            color: #7bc5ff;
+            font-weight: normal;
+            letter-spacing: 0.5px;
+            margin-left: 8px;
+        }
+
+        .metric-inner {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .stats-row {
+            display: flex;
+            justify-content: space-between;
+            gap: 12px;
+        }
+
+        .stat-block {
+            background: rgba(0, 0, 0, 0.35);
+            border-radius: 10px;
+            padding: 8px 6px;
+            flex: 1;
+            text-align: center;
+        }
+
+        .stat-label-sm {
+            font-size: 11px;
+            color: #9bc0e6;
+        }
+
+        .stat-value-lg {
+            font-size: 22px;
+            font-weight: bold;
+            color: #5de4ff;
+            line-height: 1.2;
+        }
+
+        .stat-unit {
+            font-size: 10px;
+            color: #80b3df;
+        }
+
+        .date-group {
+            display: flex;
+            justify-content: space-between;
+            background: rgba(0, 0, 0, 0.25);
+            border-radius: 8px;
+            padding: 6px 8px;
+            margin-top: 4px;
+        }
+
+        .date-cell {
+            text-align: center;
+            flex: 1;
+        }
+
+        .date-cell .label {
+            font-size: 10px;
+            color: #90b8e0;
+        }
+
+        .date-cell .value {
+            font-size: 14px;
+            font-weight: bold;
+            color: #ffbc6e;
+        }
+
+        .map-wrapper {
+            width: 100%;
+            height: 100%;
+            min-height: 0;
+            flex: 1;
+        }
+        #worldMap {
+            width: 100%;
+            height: 100%;
+            min-height: 220px;
+        }
+
+        .chart-box {
+            width: 100%;
+            height: calc(100% - 32px);
+            min-height: 160px;
+        }
+        .platform-chart, .goods-chart {
+            width: 100%;
+            height: 100%;
+        }
+
+        .scroll-container {
+            flex: 1;
+            overflow: hidden;
+            position: relative;
+            margin-top: 6px;
+        }
+        
+        .scroll-list {
+            animation: scrollUp 35s linear infinite;
+        }
+        
+        .scroll-list:hover {
+            animation-play-state: paused;
+        }
+        
+        @keyframes scrollUp {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(-50%); }
+        }
+        
+        .company-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 8px;
+            border-bottom: 1px dashed rgba(64, 158, 255, 0.2);
+            font-size: 12px;
+            color: #cae3ff;
+        }
+        
+        .company-item i {
+            color: #3ea6ff;
+            width: 20px;
+        }
+        
+        .company-name-text {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            flex: 1;
+        }
+
+        .rank-scroll-container {
+            flex: 1;
+            overflow: hidden;
+            position: relative;
+            margin-top: 6px;
+        }
+        
+        .rank-scroll-list {
+            animation: scrollUp 28s linear infinite;
+        }
+        
+        .rank-scroll-list:hover {
+            animation-play-state: paused;
+        }
+        
+        .rank-row {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 28px;
+            padding: 8px 12px 8px 6px;
+            margin-bottom: 8px;
+        }
+        
+        .rank-badge {
+            width: 32px;
+            height: 32px;
+            background: linear-gradient(135deg, #0088ff, #00ccff);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 15px;
+            color: white;
+            flex-shrink: 0;
+        }
+        
+        .rank-badge.top1 { background: linear-gradient(135deg, #ffd966, #ffb347); }
+        .rank-badge.top2 { background: linear-gradient(135deg, #b0b0b0, #909090); }
+        .rank-badge.top3 { background: linear-gradient(135deg, #cd7f32, #b87333); }
+        
+        .rank-info {
+            flex: 1;
+        }
+        
+        .rank-name {
+            font-size: 13px;
+            font-weight: bold;
+            color: #eef5ff;
+        }
+        
+        .rank-desc {
+            font-size: 10px;
+            color: #9bb8e0;
+        }
+        
+        .rank-percent {
+            font-size: 16px;
+            font-weight: bold;
+            color: #5de4ff;
+            flex-shrink: 0;
+        }
+
+        .supplier-row {
+            display: flex;
+            justify-content: space-around;
+            gap: 12px;
+            margin-top: 12px;
+            flex: 1;
+            align-items: center;
+        }
+        
+        .supplier-item {
+            text-align: center;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 14px;
+            padding: 12px 0;
+            flex: 1;
+            transition: 0.2s;
+        }
+        
+        .supplier-icon {
+            font-size: 28px;
+            color: #40a9ff;
+            margin-bottom: 6px;
+        }
+        
+        .supplier-number {
+            font-size: 28px;
+            font-weight: bold;
+            color: #5de4ff;
+        }
+        
+        .supplier-label {
+            font-size: 11px;
+            color: #9bc0e6;
+        }
+
+        .footer-bar {
+            margin-top: 10px;
+            height: 28px;
+            background: rgba(0, 0, 0, 0.4);
+            border-radius: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 16px;
+            font-size: 10px;
+            color: #7da1c4;
+            border-top: 1px solid rgba(64, 158, 255, 0.2);
+        }
+        
+        .blink-dot {
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            background: #2ecc71;
+            border-radius: 50%;
+            animation: blink 1.2s infinite;
+            margin-right: 6px;
+        }
+        
+        @keyframes blink {
+            0%,100%{ opacity: 1; }
+            50%{ opacity: 0.3; }
+        }
+
+        .scroll-container::-webkit-scrollbar,
+        .rank-scroll-container::-webkit-scrollbar {
+            display: none;
+        }
+        
+        /* 平台标签样式 */
+        .platform-stats {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 8px;
+        }
+        .platform-item {
+            flex: 1;
+            min-width: 80px;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 12px;
+            padding: 10px 8px;
+            text-align: center;
+            transition: all 0.2s;
+        }
+        .platform-item:hover {
+            background: rgba(64, 158, 255, 0.25);
+            transform: translateY(-2px);
+        }
+        .platform-icon {
+            font-size: 28px;
+            margin-bottom: 6px;
+        }
+        .platform-name {
+            font-size: 13px;
+            font-weight: bold;
+            color: #e0f0ff;
+        }
+        .platform-value {
+            font-size: 18px;
+            font-weight: bold;
+            color: #5de4ff;
+            margin-top: 4px;
+        }
+        .platform-rate {
+            font-size: 10px;
+            color: #9bc0e6;
+        }
+    </style>
+</head>
+<body>
+<div class="screen">
+    <div class="dashboard">
+        <div class="header">
+            <div class="main-title">
+                <i class="fas fa-chart-line"></i> 海城双融合产业园 · 智慧监管大屏
+            </div>
+            <div class="time-panel">
+                <span><i class="far fa-calendar-alt"></i> <span id="currentDate">2026-03-28</span></span>
+                <span><i class="far fa-clock"></i> <span id="currentTime">14:30:00</span></span>
+            </div>
+        </div>
+
+        <div class="grid-main">
+            <!-- 左侧指标区域 -->
+            <div class="metrics-area">
+                <!-- 跨境电商统计卡片 - 添加9610,9710,9810标识 -->
+                <div class="module-card">
+                    <div class="card-header">
+                        <i class="fas fa-globe"></i> 跨境电商统计
+                        <span class="code-badge">9610 | 9710 | 9810</span>
+                    </div>
+                    <div class="metric-inner">
+                        <div class="stats-row">
+                            <div class="stat-block"><div class="stat-label-sm">累计出口票数</div><div class="stat-value-lg" id="crossOrders">4,921</div></div>
+                            <div class="stat-block"><div class="stat-label-sm">累计出口金额</div><div class="stat-value-lg" id="crossValue">61,884</div><div class="stat-unit">万美元</div></div>
+                        </div>
+                        <div class="date-group">
+                            <div class="date-cell"><div class="label">本年/本月票数</div><div class="value" id="crossYearMonthOrders">35/17</div></div>
+                            <div class="date-cell"><div class="label">本年/本月金额(万)</div><div class="value" id="crossYearMonthVal">110/59</div></div>
+                            <div class="date-cell"><div class="label">本日票数/金额</div><div class="value" id="crossToday">0 / 0万</div></div>
+                        </div>
+                    </div>
+                </div>
+                <!-- 市场采购贸易卡片 - 添加1039标识 -->
+                <div class="module-card">
+                    <div class="card-header">
+                        <i class="fas fa-store"></i> 市场采购贸易
+                        <span class="code-badge">1039</span>
+                    </div>
+                    <div class="metric-inner">
+                        <div class="stats-row">
+                            <div class="stat-block"><div class="stat-label-sm">累计出口票数</div><div class="stat-value-lg" id="marketOrders">4,921</div></div>
+                            <div class="stat-block"><div class="stat-label-sm">累计出口金额</div><div class="stat-value-lg" id="marketValue">61,884</div><div class="stat-unit">万美元</div></div>
+                        </div>
+                        <div class="date-group">
+                            <div class="date-cell"><div class="label">本年/本月票数</div><div class="value" id="marketYearMonthOrders">35/17</div></div>
+                            <div class="date-cell"><div class="label">本年/本月金额(万)</div><div class="value" id="marketYearMonthVal">110/59</div></div>
+                            <div class="date-cell"><div class="label">本日票数/金额</div><div class="value" id="marketToday">0 / 0万</div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 世界地图区域 -->
+            <div class="map-area module-card">
+                <div class="card-header"><i class="fas fa-map-marked-alt"></i> 全球贸易通关分布 · 航线动态</div>
+                <div class="map-wrapper" style="flex:1; min-height:0;">
+                    <div id="worldMap" style="width:100%; height:100%;"></div>
+                </div>
+            </div>
+
+            <!-- 跨境电商平台类型分布 (替换原通关趋势图) -->
+            <div class="platform-area module-card">
+                <div class="card-header"><i class="fab fa-amazon"></i> 跨境电商平台类型分布</div>
+                <div class="chart-box">
+                    <div id="platformChart" class="platform-chart"></div>
+                </div>
+                <!-- 添加平台数据统计卡片式展示 -->
+                <div class="platform-stats" id="platformStats">
+                    <!-- 动态生成平台统计数据 -->
+                </div>
+            </div>
+
+            <!-- 商品类别饼图 -->
+            <div class="chart-right module-card">
+                <div class="card-header"><i class="fas fa-chart-pie"></i> 跨境电商商品类别</div>
+                <div class="chart-box">
+                    <div id="goodsChart" class="goods-chart"></div>
+                </div>
+            </div>
+
+            <!-- 企业名录 - 自动滚动显示 -->
+            <div class="list-area module-card">
+                <div class="card-header"><i class="fas fa-building"></i> 海城跨境电商企业名录 <span style="font-size:10px; margin-left:6px;">共42家 | 自动滚动</span></div>
+                <div class="scroll-container" id="enterpriseScrollContainer">
+                    <div class="scroll-list" id="enterpriseList"></div>
+                </div>
+            </div>
+
+            <!-- TOP5 商品排行 - 自动滚动显示 -->
+            <div class="rank-area module-card">
+                <div class="card-header"><i class="fas fa-trophy"></i> 市场采购贸易 · 出口商品TOP5 <span style="font-size:10px; margin-left:6px;">自动轮播</span></div>
+                <div class="rank-scroll-container" id="top5ScrollContainer">
+                    <div class="rank-scroll-list" id="top5RankList"></div>
+                </div>
+            </div>
+
+            <!-- 供货商/外贸公司/报关行统计 -->
+            <div class="supplier-area module-card">
+                <div class="card-header"><i class="fas fa-handshake"></i> 配套服务企业统计</div>
+                <div class="supplier-row">
+                    <div class="supplier-item"><div class="supplier-icon"><i class="fas fa-truck"></i></div><div class="supplier-number" id="supplierCount">6,154</div><div class="supplier-label">供货商</div></div>
+                    <div class="supplier-item"><div class="supplier-icon"><i class="fas fa-globe"></i></div><div class="supplier-number" id="tradingCount">65</div><div class="supplier-label">外贸公司</div></div>
+                    <div class="supplier-item"><div class="supplier-icon"><i class="fas fa-file-signature"></i></div><div class="supplier-number" id="brokerCount">9</div><div class="supplier-label">报关行</div></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-bar">
+            <div><i class="fas fa-database"></i> 数据源：海城海关跨境电商通关系统 | 西柳服装城实时申报</div>
+            <div><span class="blink-dot"></span> 实时动态更新 · 最后刷新: <span id="lastUpdateTime">--:--:--</span></div>
+            <div><i class="fas fa-chart-simple"></i> 固定分辨率 1280x768 | 平台:亚马逊/Temu/TikTok/速卖通/阿里巴巴</div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // 企业数据（42家）
+    const enterprisesList = [
+        "海城市华德服装制衣有限公司", "海城市圣兰翔服饰有限公司", "海城市大爱美依缘商贸城有限公司",
+        "辽宁政轩国际物流有限公司", "海城市西柳镇优棉坊服装商行", "海城市兴海区十二百货零售商店",
+        "海城市兴海区洪宇服装商行", "海城市西柳镇百亿狮隆服装商行", "海城中央化学有限公司",
+        "海城市兴海区鑫源印刷厂", "海城市西柳镇羽翼良品服装商行", "海城市海州区尊棋精品服饰店",
+        "海城市阿炜服饰商贸有限公司", "鞍山方得跨境电商有限公司", "海城市西柳镇琼语服装服饰店",
+        "海城市兴海区艳艳姐服饰精品店", "海城市佳佳商贸服务有限公司", "海城市西柳镇超越大码女装店",
+        "海城市西柳镇美源商贸服务中心", "海城市西柳镇博仲服饰店", "海城市西柳镇姚衣姚洋气女装店",
+        "海城市西柳镇泽茗商贸店", "海城市西柳镇雨诺商贸中心", "辽宁佳佳乐商贸有限公司",
+        "海城市西柳镇木槿与风服饰店", "海城市西柳镇币晟服饰店", "海城市西柳镇三姐的服装店",
+        "润佳（辽宁省）商贸有限公司", "海城市西柳镇锦泽网络科技中心", "海城市西柳镇浣英网络技术中心",
+        "海城市海贸通供应链管理有限公司", "海城是贸达进出口有限公司", "海城市春雷储运服务有限公司",
+        "海城市百恒皮具有限公司", "辽宁西柳服装商业管理集团有限公司", "西柳服装贸易（辽宁）有限公司",
+        "辽宁西柳电子口岸有限公司", "辽宁西柳网络科技有限公司", "辽宁北纬四零商业管理有限公司",
+        "辽宁衣饰天下文化传媒有限公司", "海城市西柳服装集团有限公司", "海城市百信进出口贸易有限公司","辽宁超鹏服饰有限公司"
+    ];
+
+    // TOP5商品数据
+    const topProductsBase = [
+        { rank:1, name:"檬胶、塑斜、皮羊及再生", desc:"橡胶塑料皮革制品", percent:"28.6%", cls:"top1" },
+        { rank:2, name:"棉制女式上衣", desc:"棉制针织女式上衣", percent:"18.3%", cls:"top2" },
+        { rank:3, name:"账本,笔记本等及类似品", desc:"纸制品及办公文具", percent:"12.7%", cls:"top3" },
+        { rank:4, name:"其他镐，锄，耙", desc:"农用手工工具", percent:"8.9%", cls:"" },
+        { rank:5, name:"护胸背带工装裤、马裤", desc:"工装及功能性服装", percent:"7.2%", cls:"" }
+    ];
+
+    // 跨境电商平台数据 (亚马逊、Temu、TikTok、速卖通、阿里巴巴)
+    const platformData = [
+        { name: "亚马逊", icon: "fab fa-amazon", value: 12480, percent: 32.5, color: "#ff9900" },
+        { name: "Temu", icon: "fas fa-store", value: 8920, percent: 23.2, color: "#6c5ce7" },
+        { name: "TikTok", icon: "fab fa-tiktok", value: 7650, percent: 19.9, color: "#000000" },
+        { name: "速卖通", icon: "fas fa-rocket", value: 5380, percent: 14.0, color: "#ff6b35" },
+        { name: "阿里巴巴", icon: "fab fa-alipay", value: 3980, percent: 10.4, color: "#ff6a00" }
+    ];
+
+    function renderEnterpriseList() {
+        const container = document.getElementById('enterpriseList');
+        if (!container) return;
+        let html = '';
+        for (let i = 0; i < enterprisesList.length; i++) {
+            html += `<div class="company-item"><i class="fas fa-building"></i><span class="company-name-text">${enterprisesList[i]}</span></div>`;
+        }
+        for (let i = 0; i < enterprisesList.length; i++) {
+            html += `<div class="company-item"><i class="fas fa-building"></i><span class="company-name-text">${enterprisesList[i]}</span></div>`;
+        }
+        container.innerHTML = html;
+    }
+
+    function renderTopProducts() {
+        const container = document.getElementById('top5RankList');
+        if (!container) return;
+        let html = '';
+        for (let i = 0; i < 2; i++) {
+            topProductsBase.forEach(p => {
+                html += `<div class="rank-row"><div class="rank-badge ${p.cls}">${p.rank}</div><div class="rank-info"><div class="rank-name">${p.name}</div><div class="rank-desc">${p.desc}</div></div><div class="rank-percent">${p.percent}</div></div>`;
+            });
+        }
+        container.innerHTML = html;
+    }
+
+    // 渲染平台统计卡片
+    function renderPlatformStats() {
+        const container = document.getElementById('platformStats');
+        if (!container) return;
+        let html = '';
+        platformData.forEach(p => {
+            html += `
+                <div class="platform-item">
+                    <div class="platform-icon"><i class="${p.icon}"></i></div>
+                    <div class="platform-name">${p.name}</div>
+                    <div class="platform-value">${p.value.toLocaleString()}</div>
+                    <div class="platform-rate">${p.percent}% 占比</div>
+                </div>
+            `;
+        });
+        container.innerHTML = html;
+    }
+
+    function updateStatistics() {
+        document.getElementById('crossOrders').innerText = '4,921';
+        document.getElementById('crossValue').innerText = '61,884';
+        document.getElementById('crossYearMonthOrders').innerText = '35/17';
+        document.getElementById('crossYearMonthVal').innerText = '110/59';
+        document.getElementById('crossToday').innerText = '0 / 0万';
+        
+        document.getElementById('marketOrders').innerText = '4,921';
+        document.getElementById('marketValue').innerText = '61,884';
+        document.getElementById('marketYearMonthOrders').innerText = '35/17';
+        document.getElementById('marketYearMonthVal').innerText = '110/59';
+        document.getElementById('marketToday').innerText = '0 / 0万';
+        
+        document.getElementById('supplierCount').innerText = '6,154';
+        document.getElementById('tradingCount').innerText = '65';
+        document.getElementById('brokerCount').innerText = '9';
+    }
+
+    function updateLastRefresh() {
+        const now = new Date();
+        document.getElementById('lastUpdateTime').innerText = now.toLocaleTimeString();
+    }
+
+    function updateDateTime() {
+        const now = new Date();
+        document.getElementById('currentDate').innerText = now.toISOString().slice(0,10);
+        document.getElementById('currentTime').innerText = now.toLocaleTimeString();
+    }
+
+    // 初始化平台分布图表
+    function initPlatformChart() {
+        const chart = echarts.init(document.getElementById('platformChart'));
+        chart.setOption({
+            tooltip: { trigger: 'axis', axisPointer: { type: 'shadow' }, backgroundColor: 'rgba(0,0,0,0.7)' },
+            grid: { left: '8%', right: '5%', top: 15, bottom: 10, containLabel: true },
+            xAxis: { type: 'category', data: platformData.map(p => p.name), axisLabel: { color: '#b8dcff', fontSize: 11, rotate: 15 }, axisLine: { lineStyle: { color: '#4a6587' } } },
+            yAxis: { type: 'value', name: '出口额(万美元)', nameTextStyle: { color: '#9bc0e6' }, axisLabel: { color: '#b8dcff' }, splitLine: { lineStyle: { color: 'rgba(74,101,135,0.3)' } } },
+            series: [{
+                name: '出口额', type: 'bar', data: platformData.map(p => p.value),
+                itemStyle: { borderRadius: [6,6,0,0], color: new echarts.graphic.LinearGradient(0,0,0,1, [
+                    { offset: 0, color: '#5de4ff' }, { offset: 1, color: '#2c7da0' }
+                ]) },
+                label: { show: true, position: 'top', color: '#ffbc6e', formatter: '{c}万' }
+            }]
+        });
+        window.addEventListener('resize', () => chart.resize());
+        return chart;
+    }
+
+    // 初始化商品类别饼图
+    function initGoodsChart() {
+        const chart = echarts.init(document.getElementById('goodsChart'));
+        chart.setOption({
+            tooltip: { trigger: 'item' },
+            legend: { orient: 'vertical', left: 'left', textStyle: { color: '#cae3ff' } },
+            series: [{
+                type: 'pie', radius: '55%', center: ['50%', '55%'],
+                data: [
+                    { value: 76, name: '服装服饰', itemStyle: { color: '#3aa8ff' } },
+                    { value: 24, name: '箱包皮具', itemStyle: { color: '#ffaa66' } }
+                ],
+                label: { color: '#f0f9ff', formatter: '{b}: {d}%' },
+                emphasis: { scale: true }
+            }]
+        });
+        window.addEventListener('resize', () => chart.resize());
+        return chart;
+    }
+
+    // 初始化世界地图
+    function initWorldMap() {
+        const mapChart = echarts.init(document.getElementById('worldMap'));
+        const geoCoordMap = {
+            '中国': [116.46, 39.92], '美国': [-95.7129, 37.0902], '德国': [10.4515, 51.1657],
+            '日本': [138.2529, 36.2048], '英国': [-3.436, 55.378], '澳大利亚': [133.775, -25.274],
+            '韩国': [127.7669, 35.9078], '俄罗斯': [105.3188, 61.5240]
+        };
+        const flightData = [
+            [{name:'中国'},{name:'美国',value:92}],[{name:'中国'},{name:'德国',value:84}],
+            [{name:'中国'},{name:'日本',value:79}],[{name:'中国'},{name:'英国',value:70}],
+            [{name:'中国'},{name:'澳大利亚',value:64}],[{name:'中国'},{name:'韩国',value:86}],
+            [{name:'中国'},{name:'俄罗斯',value:56}]
+        ];
+        function convertLines(data) {
+            let res = [];
+            data.forEach(item => {
+                let from = geoCoordMap[item[0].name];
+                let to = geoCoordMap[item[1].name];
+                if(from && to) res.push({ fromName:item[0].name, toName:item[1].name, coords:[from,to], value:item[1].value });
+            });
+            return res;
+        }
+        mapChart.setOption({
+            tooltip: { trigger: 'item', backgroundColor: 'rgba(0,0,0,0.7)', borderColor: '#40a9ff' },
+            geo: { map: 'world', roam: false, zoom: 1.15, itemStyle: { areaColor: '#0a2f4a', borderColor: '#2c7fb8' }, emphasis: { itemStyle: { areaColor: '#1e5780' } } },
+            series: [
+                { type: 'map', map: 'world', geoIndex: 0 },
+                { name: '贸易航线', type: 'lines', coordinateSystem: 'geo', zlevel: 2, effect: { show: true, period: 5, trailLength: 0.5, symbol: 'circle', symbolSize: 6 }, lineStyle: { width: 1.5, curveness: 0.2, color: '#40ffff', opacity: 0.7 }, data: convertLines(flightData) },
+                { type: 'effectScatter', coordinateSystem: 'geo', zlevel: 3, rippleEffect: { scale: 4 }, symbolSize: 8, itemStyle: { color: '#ffaa44', shadowBlur: 8 }, data: Object.keys(geoCoordMap).map(name => ({ name, value: geoCoordMap[name].concat(50) })) }
+            ]
+        });
+        window.addEventListener('resize', () => mapChart.resize());
+        return mapChart;
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        renderEnterpriseList();
+        renderTopProducts();
+        renderPlatformStats();
+        updateStatistics();
+        initWorldMap();
+        initPlatformChart();
+        initGoodsChart();
+        updateDateTime();
+        updateLastRefresh();
+        
+        setInterval(() => { updateDateTime(); updateLastRefresh(); }, 1000);
+        setInterval(() => { renderEnterpriseList(); renderTopProducts(); updateLastRefresh(); }, 30000);
+    });
+</script>
+</body>
+</html>

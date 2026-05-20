@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ceb:CEB303Message guid='554B6D14-615D-D7D4-5184-58B1AD84215C' version='1.0' xmlns:ceb='http://www.chinaport.gov.cn/ceb' xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'>
+    <ceb:Order>
+    <ceb:OrderHead>
+        <ceb:guid>4EE7A58E-726E-FE89-319E-9F4E16BE8CA4</ceb:guid>
+        <ceb:appType>1</ceb:appType>
+        <ceb:appTime>20260313095613</ceb:appTime>
+        <ceb:appStatus>2</ceb:appStatus>
+        <ceb:orderType>B</ceb:orderType>
+        <ceb:orderNo>26M-606B4</ceb:orderNo>
+        <ceb:ebpCode>AMAZON.COM</ceb:ebpCode>
+        <ceb:ebpName>AMAZON.COM</ceb:ebpName>
+        <ceb:ebcCode>210166000A</ceb:ebcCode>
+        <ceb:ebcName></ceb:ebcName>
+        <ceb:goodsValue>0.000</ceb:goodsValue>
+        <ceb:freight>0</ceb:freight>
+        <ceb:currency>502</ceb:currency>
+        <ceb:note>跨境电子商务</ceb:note>
+    </ceb:OrderHead>
+    <ceb:OrderList>
+        <ceb:gnum>1</ceb:gnum>
+        <ceb:itemNo>4602199000</ceb:itemNo>
+        <ceb:itemName>工艺品</ceb:itemName>
+        <ceb:itemDescribe>工艺品</ceb:itemDescribe>
+        <ceb:barCode></ceb:barCode>
+        <ceb:unit>007</ceb:unit>
+        <ceb:currency>502</ceb:currency>
+        <ceb:qty>7540.00</ceb:qty>
+        <ceb:price>6.0777</ceb:price>
+        <ceb:totalPrice>45825.858</ceb:totalPrice>
+        <ceb:note></ceb:note>
+    </ceb:OrderList>
+    <ceb:OrderList>
+        <ceb:gnum>2</ceb:gnum>
+        <ceb:itemNo>4602199000</ceb:itemNo>
+        <ceb:itemName>工艺品</ceb:itemName>
+        <ceb:itemDescribe>工艺品</ceb:itemDescribe>
+        <ceb:barCode></ceb:barCode>
+        <ceb:unit>007</ceb:unit>
+        <ceb:currency>502</ceb:currency>
+        <ceb:qty>7540.00</ceb:qty>
+        <ceb:price>6.0777</ceb:price>
+        <ceb:totalPrice>45825.858</ceb:totalPrice>
+        <ceb:note></ceb:note>
+    </ceb:OrderList>
+</ceb:Order>
+    <ceb:BaseTransfer>
+        <ceb:copCode>210166000A</ceb:copCode>
+        <ceb:copName></ceb:copName>
+        <ceb:dxpMode>DXP</ceb:dxpMode>
+        <ceb:dxpId>DXPENT0000018238</ceb:dxpId>
+        <ceb:note></ceb:note>
+    </ceb:BaseTransfer>
+</ceb:CEB303Message>

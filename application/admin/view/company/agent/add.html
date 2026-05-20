@@ -1,0 +1,39 @@
+<form id="add-form" class="form-horizontal" role="form" data-toggle="validator" method="POST" action="">
+
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('AgentCode')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-agentCode" data-rule="required" class="form-control" name="row[agentCode]" type="text">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('AgentName')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-agentName" data-rule="required" class="form-control" name="row[agentName]" type="text">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('DxpID')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-dxpID" data-rule="required" class="form-control" name="row[dxpID]" type="text">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Social_code')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-social_code" data-rule="required" class="form-control" name="row[social_code]" type="text" value="">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('IsDefault')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-isDefault" class="form-control" name="row[isDefault]" type="text">
+        </div>
+    </div>
+    <div class="form-group layer-footer">
+        <label class="control-label col-xs-12 col-sm-2"></label>
+        <div class="col-xs-12 col-sm-8">
+            <button type="submit" class="btn btn-primary btn-embossed disabled">{:__('OK')}</button>
+        </div>
+    </div>
+</form>

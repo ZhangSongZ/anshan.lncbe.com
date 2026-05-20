@@ -1,0 +1,81 @@
+<div class="panel panel-default panel-intro">
+    {:build_heading()}
+    <div class="panel-heading">
+        {:build_heading(null,FALSE)}
+        <ul class="nav nav-tabs" data-field="status">
+            <li class="active"><a href="#t-all" data-value="" data-toggle="tab">{:__('All')}</a></li>
+            {foreach name="statusList" item="vo"}
+            <li><a href="#t-{$key}" data-value="{$key}" data-toggle="tab">{$vo}</a></li>
+            {/foreach}
+        </ul>
+    </div>
+
+    <div class="panel-body">
+        <div id="myTabContent" class="tab-content">
+            <div class="tab-pane fade active in" id="one">
+                <div class="widget-body no-padding">
+                    <div id="toolbar" class="toolbar">
+                        <!-- 刷新 -->
+                        <a href="javascript:;" class="btn btn-primary btn-refresh" title="{:__('Refresh')}" ><i class="fa fa-refresh"></i> </a>
+
+                        <!-- 导入 -->
+                        <a href="javascript:;" class="btn btn-info btn-import {:$auth->check('excbe/import')?'':'hide'}" title="{:__('Import')}" id="btn-import-file" data-url="ajax/upload" data-mimetype="csv,xls,xlsx" data-multiple="false" style="color:#fff;background-color:#20bae8"><i class="fa fa-upload"></i> {:__('导入')}</a>
+
+                        <!-- 报关操作（下拉） -->
+                        <div class="btn-group">
+                            <a href="javascript:;" class="btn btn-success dropdown-toggle" data-toggle="dropdown"><i class="fa fa-send"></i> 报关操作 <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="javascript:;" class="btn-customsOne">三单报关</a></li>
+                                <li><a href="javascript:;" class="btn-customsTwo">603清单报关</a></li>
+                                <li><a href="javascript:;" class="btn-customsThree">607总分单报关</a></li>
+                                <li><a href="javascript:;" class="btn-customsFour">507运抵报关</a></li>
+                                <li><a href="javascript:;" class="btn-customsFive">509离境报关</a></li>
+                                <li class="divider"></li>
+                                <li><a href="javascript:;" class="btn-customsEight" style="color:#d9534f"><i class="fa fa-undo"></i> 605订单撤销</a></li>
+                            </ul>
+                        </div>
+
+                        <!-- 打印（下拉） -->
+                        <div class="btn-group">
+                            <a href="javascript:;" class="btn btn-warning dropdown-toggle" data-toggle="dropdown"><i class="fa fa-print"></i> 打印 <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="javascript:;" class="btn-letian">批量打印面单</a></li>
+                                <li><a href="javascript:;" class="btn-letians">打印面单</a></li>
+                            </ul>
+                        </div>
+
+                        <!-- 导出（下拉） -->
+                        <div class="btn-group">
+                            <a href="javascript:;" class="btn btn-success dropdown-toggle" data-toggle="dropdown"><i class="fa fa-download"></i> 导出 <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="javascript:;" class="btn-export {:$auth->check('excbe/export')?'':'hide'}">导出汇总</a></li>
+                                <li><a href="javascript:;" class="btn-exports {:$auth->check('excbe/exports')?'':'hide'}">导出数据</a></li>
+                            </ul>
+                        </div>
+
+                        <!-- 删除 -->
+                        <a href="javascript:;" class="btn btn-danger btn-dels" title="{:__('Delete')}" ><i class="fa fa-trash"></i> {:__('Delete')}</a>
+
+                        <!-- 统计信息 -->
+                        <div class="btn-group" style="margin-left:5px;">
+                            <span class="btn btn-default" style="cursor:default;color:#fff;background-color:#18adbc;">待报关行量：<strong id="count">0</strong></span>
+                            <span class="btn btn-default" style="cursor:default;color:#fff;background-color:#18adbc;">待报关单数：<strong id="counts">0</strong></span>
+                            <span class="btn btn-default" style="cursor:default;color:#fff;background-color:#18adbc;">单数：<strong id="countlogis">0</strong></span>
+                        </div>
+                    </div>
+
+
+
+
+                    <table id="table" class="table table-striped table-bordered table-hover table-nowrap"
+                           data-operate-edit="{:$auth->check('excbe/edit')}"
+                           data-operate-del="{:$auth->check('excbe/del')}"
+                           width="100%">
+                    </table>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+

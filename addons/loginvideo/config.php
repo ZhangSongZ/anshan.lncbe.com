@@ -1,0 +1,40 @@
+<?php
+
+return [
+    [
+        'name' => 'background-color',
+        'title' => '背景色',
+        'type' => 'string',
+        'content' => [],
+        'value' => '',
+        'rule' => '',
+        'msg' => '',
+        'tip' => '',
+        'ok' => '',
+        'extend' => '',
+    ],
+    [
+        'name' => 'background-image',
+        'title' => '背景图片URL',
+        'type' => 'image',
+        'content' => [],
+        'value' => '/uploads/20240317/9458b4fd0a6440d65d30bd297e702e6d.jpg',
+        'rule' => '',
+        'msg' => '',
+        'tip' => '',
+        'ok' => '',
+        'extend' => '',
+    ],
+    [
+        'name' => 'background-video',
+        'title' => '背景视频URL',
+        'type' => 'file',
+        'content' => [],
+        'value' => '',
+        'rule' => '',
+        'msg' => '',
+        'tip' => '',
+        'ok' => '',
+        'extend' => '',
+    ],
+];

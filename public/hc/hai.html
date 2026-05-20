@@ -1,0 +1,987 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>海城双融合产业园统计大屏</title>
+    <script src="https://cdn.staticfile.net/echarts/4.3.0/echarts.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/echarts@4.3.0/map/js/world.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Microsoft YaHei', sans-serif;
+        }
+        
+        body {
+            background: radial-gradient(circle at center, #0c1b33 0%, #070e1d 100%);
+            color: #e6f7ff;
+            overflow: hidden;
+            height: 100vh;
+            position: relative;
+        }
+        
+        /* 装饰元素 */
+        .corner {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            border: 2px solid;
+            border-image: linear-gradient(45deg, #0088ff, #00ddff) 1;
+        }
+        .corner-tl { top: 0; left: 0; border-right: none; border-bottom: none; }
+        .corner-tr { top: 0; right: 0; border-left: none; border-bottom: none; }
+        .corner-bl { bottom: 0; left: 0; border-right: none; border-top: none; }
+        .corner-br { bottom: 0; right: 0; border-left: none; border-top: none; }
+        
+        /* 头部区域 */
+        .header {
+            height: 80px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 30px;
+            position: relative;
+            z-index: 10;
+            background: rgba(16, 35, 70, 0.3);
+            border-bottom: 1px solid rgba(64, 158, 255, 0.2);
+            box-shadow: 0 5px 20px rgba(0, 50, 150, 0.1);
+        }
+        
+        .main-title {
+            font-size: 36px;
+            font-weight: bold;
+            background: linear-gradient(90deg, #00f2fe, #4facfe);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 20px rgba(79, 172, 254, 0.3);
+            letter-spacing: 2px;
+            position: relative;
+        }
+        
+        .main-title::after {
+            content: "";
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, #0088ff, transparent);
+            border-radius: 3px;
+        }
+        
+        .time-panel {
+            font-size: 18px;
+            color: #8ac6ff;
+            display: flex;
+            gap: 20px;
+        }
+        
+        .time-panel span {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        /* 大屏布局 */
+        .dashboard {
+            display: grid;
+            grid-template:
+                "metrics metrics map map" 220px
+                "chart1 chart2 map map" 320px
+                "list right1 right2 right2" 1fr
+                / 1fr 1fr 1fr 1fr;
+            gap: 15px;
+            padding: 20px;
+            height: calc(100vh - 80px);
+            position: relative;
+            z-index: 5;
+        }
+        
+        /* 模块统一样式 */
+        .module {
+            background: rgba(16, 35, 70, 0.6);
+            border: 1px solid rgba(64, 158, 255, 0.3);
+            border-radius: 6px;
+            box-shadow: 0 0 30px rgba(0, 150, 255, 0.1);
+            padding: 15px;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .module:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 25px rgba(0, 150, 255, 0.3);
+        }
+        
+        .module::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #0088ff, #00ddff);
+        }
+        
+        .module-title {
+            font-size: 18px;
+            margin-bottom: 15px;
+            color: #40a9ff;
+            display: flex;
+            align-items: center;
+            font-weight: bold;
+        }
+        
+        .module-title::before {
+            content: "";
+            display: inline-block;
+            width: 4px;
+            height: 18px;
+            background: #40a9ff;
+            margin-right: 10px;
+            border-radius: 2px;
+        }
+        
+        /* 核心指标区 - 两栏布局 */
+        .metrics {
+            grid-area: metrics;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+        
+        .metric-card {
+            background: linear-gradient(145deg, rgba(24, 50, 99, 0.7), rgba(12, 27, 54, 0.7));
+            border-radius: 6px;
+            padding: 18px;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .metric-card::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #36cfc9, #40a9ff);
+        }
+        
+        .card-header {
+            font-size: 18px;
+            font-weight: bold;
+            color: #40a9ff;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            border-left: 3px solid #40a9ff;
+            padding-left: 12px;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            margin-bottom: 15px;
+        }
+        
+        .stat-item {
+            text-align: center;
+            padding: 8px;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 6px;
+        }
+        
+        .stat-label {
+            font-size: 12px;
+            color: #8ac6ff;
+            margin-bottom: 6px;
+        }
+        
+        .stat-value {
+            font-size: 22px;
+            font-weight: bold;
+            color: #00eaff;
+        }
+        
+        .stat-sub {
+            font-size: 11px;
+            color: #5d8ab9;
+            margin-top: 4px;
+        }
+        
+        .date-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin-top: 12px;
+            padding-top: 12px;
+            border-top: 1px dashed rgba(64, 158, 255, 0.3);
+        }
+        
+        .date-item {
+            text-align: center;
+        }
+        
+        .date-label {
+            font-size: 11px;
+            color: #8ac6ff;
+        }
+        
+        .date-value {
+            font-size: 16px;
+            font-weight: bold;
+            color: #ff9c6e;
+        }
+        
+        .date-sub {
+            font-size: 10px;
+            color: #5d8ab9;
+        }
+        
+        .divider {
+            color: #40a9ff;
+            margin: 0 4px;
+        }
+        
+        /* 地图区域 */
+        .map-container {
+            grid-area: map;
+            height: 100%;
+        }
+        
+        #worldMap {
+            width: 100%;
+            height: 100%;
+        }
+        
+        /* 图表区域 */
+        .chart1 { grid-area: chart1; }
+        .chart2 { grid-area: chart2; }
+        
+        .chart-container {
+            width: 100%;
+            height: calc(100% - 35px);
+        }
+        
+        /* 企业列表 - 单列显示 */
+        .realtime-list {
+            grid-area: list;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .list-container {
+            flex: 1;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .list-header {
+            display: grid;
+            grid-template-columns: 1fr;
+            padding: 12px 15px;
+            background: rgba(24, 50, 99, 0.5);
+            font-weight: bold;
+            color: #40a9ff;
+            border-bottom: 1px solid rgba(64, 158, 255, 0.2);
+            text-align: center;
+        }
+        
+        .list-content {
+            position: absolute;
+            width: 100%;
+            animation: scrollList 45s linear infinite;
+        }
+        
+        .list-content:hover {
+            animation-play-state: paused;
+        }
+        
+        @keyframes scrollList {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(-50%); }
+        }
+        
+        .list-item {
+            display: grid;
+            grid-template-columns: 1fr;
+            padding: 12px 15px;
+            border-bottom: 1px dashed rgba(64, 158, 255, 0.2);
+            transition: all 0.2s;
+            font-size: 13px;
+            text-align: center;
+        }
+        
+        .list-item:hover {
+            background: rgba(64, 158, 255, 0.15);
+            transform: translateX(5px);
+        }
+        
+        .company-name {
+            color: #36cfc9;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        
+        .company-name i {
+            font-size: 14px;
+            color: #40a9ff;
+        }
+        
+        /* 右侧面板 */
+        .right-panel1 {
+            grid-area: right1;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        
+        .right-panel2 {
+            grid-area: right2;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        
+        /* TOP5商品排行样式 */
+        .rank-card {
+            background: rgba(16, 35, 70, 0.6);
+            border: 1px solid rgba(64, 158, 255, 0.3);
+            border-radius: 6px;
+            padding: 15px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .rank-list {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-top: 10px;
+        }
+        
+        .rank-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 8px 10px;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 6px;
+            transition: all 0.2s;
+        }
+        
+        .rank-item:hover {
+            background: rgba(64, 158, 255, 0.2);
+            transform: translateX(5px);
+        }
+        
+        .rank-number {
+            width: 32px;
+            height: 32px;
+            background: linear-gradient(135deg, #0088ff, #00ddff);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 16px;
+            color: #fff;
+        }
+        
+        .rank-number.top1 { background: linear-gradient(135deg, #ffd700, #ffb347); }
+        .rank-number.top2 { background: linear-gradient(135deg, #c0c0c0, #a0a0a0); }
+        .rank-number.top3 { background: linear-gradient(135deg, #cd7f32, #b87333); }
+        
+        .rank-info {
+            flex: 1;
+        }
+        
+        .rank-name {
+            font-size: 15px;
+            font-weight: bold;
+            color: #e6f7ff;
+            margin-bottom: 4px;
+        }
+        
+        .rank-desc {
+            font-size: 11px;
+            color: #8ac6ff;
+        }
+        
+        .rank-value {
+            font-size: 18px;
+            font-weight: bold;
+            color: #00eaff;
+        }
+        
+        /* 供货商/外贸公司/报关行样式 */
+        .supplier-card {
+            background: rgba(16, 35, 70, 0.6);
+            border: 1px solid rgba(64, 158, 255, 0.3);
+            border-radius: 6px;
+            padding: 15px;
+            flex: 1;
+        }
+        
+        .supplier-stats {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 15px;
+            gap: 10px;
+        }
+        
+        .stat-item-supplier {
+            text-align: center;
+            flex: 1;
+            padding: 12px;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 8px;
+            transition: all 0.2s;
+        }
+        
+        .stat-item-supplier:hover {
+            background: rgba(64, 158, 255, 0.2);
+            transform: translateY(-3px);
+        }
+        
+        .stat-number-supplier {
+            font-size: 28px;
+            font-weight: bold;
+            color: #00eaff;
+        }
+        
+        .stat-label-supplier {
+            font-size: 12px;
+            color: #8ac6ff;
+            margin-top: 5px;
+        }
+        
+        .stat-icon-supplier {
+            font-size: 24px;
+            color: #40a9ff;
+            margin-bottom: 8px;
+        }
+        
+        /* 底部信息 */
+        .footer {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 30px;
+            background: rgba(16, 35, 70, 0.4);
+            border-top: 1px solid rgba(64, 158, 255, 0.2);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+            font-size: 14px;
+            color: #5d8ab9;
+            z-index: 10;
+        }
+        
+        .data-update {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .blink {
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            background: #52c41a;
+            border-radius: 50%;
+            animation: blink 1.5s infinite;
+        }
+        
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.3; }
+        }
+        
+        /* 滚动条隐藏 */
+        .list-container::-webkit-scrollbar {
+            display: none;
+        }
+        
+        .small-text {
+            font-size: 11px;
+        }
+        
+        .flex-between {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+    </style>
+</head>
+<body>
+    <!-- 装饰元素 -->
+    <div class="corner corner-tl"></div>
+    <div class="corner corner-tr"></div>
+    <div class="corner corner-bl"></div>
+    <div class="corner corner-br"></div>
+    
+    <!-- 头部区域 -->
+    <div class="header">
+        <div class="main-title">
+            <i class="fas fa-globe-asia"></i> 海城双融合产业园实时监控平台
+        </div>
+        <div class="time-panel">
+            <span><i class="far fa-calendar-alt"></i> <span id="currentDate">2026-03-24</span></span>
+            <span><i class="far fa-clock"></i> <span id="currentTime">16:37:36</span></span>
+        </div>
+    </div>
+    
+    <!-- 大屏主体 -->
+    <div class="dashboard">
+        <!-- 核心指标 - 跨境电商统计 + 市场采购贸易 -->
+        <div class="metrics">
+            <!-- 跨境电商统计卡片 -->
+            <div class="metric-card">
+                <div class="card-header">
+                    <i class="fas fa-chart-line"></i> 跨境电商统计
+                </div>
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <div class="stat-label">累计出口票数</div>
+                        <div class="stat-value" id="crossBorderTotalOrders">4,921</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-label">累计出口金额</div>
+                        <div class="stat-value" id="crossBorderTotalValue">61,884</div>
+                        <div class="stat-sub">万美元</div>
+                    </div>
+                </div>
+                <div class="date-stats">
+                    <div class="date-item">
+                        <div class="date-label">本年度/本月出口票数</div>
+                        <div class="date-value" id="yearMonthOrders">35/17</div>
+                    </div>
+                    <div class="date-item">
+                        <div class="date-label">本年度/本月出口金额</div>
+                        <div class="date-value" id="yearMonthValue">110/59</div>
+                        <div class="date-sub">万美元</div>
+                    </div>
+                    <div class="date-item">
+                        <div class="date-label">本日出口票数</div>
+                        <div class="date-value" id="todayOrders">0</div>
+                    </div>
+                </div>
+                <div class="flex-between" style="margin-top: 8px; justify-content: center;">
+                    <div class="date-item">
+                        <div class="date-label">本日出口金额</div>
+                        <div class="date-value" id="todayValue">0</div>
+                        <div class="date-sub">万美元</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 市场采购贸易卡片 -->
+            <div class="metric-card">
+                <div class="card-header">
+                    <i class="fas fa-store"></i> 市场采购贸易
+                </div>
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <div class="stat-label">累计出口票数</div>
+                        <div class="stat-value" id="marketTotalOrders">4,921</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-label">累计出口金额</div>
+                        <div class="stat-value" id="marketTotalValue">61,884</div>
+                        <div class="stat-sub">万美元</div>
+                    </div>
+                </div>
+                <div class="date-stats">
+                    <div class="date-item">
+                        <div class="date-label">本年度/本月出口票数</div>
+                        <div class="date-value" id="marketYearMonthOrders">35/17</div>
+                    </div>
+                    <div class="date-item">
+                        <div class="date-label">本年度/本月出口金额</div>
+                        <div class="date-value" id="marketYearMonthValue">110/59</div>
+                        <div class="date-sub">万美元</div>
+                    </div>
+                    <div class="date-item">
+                        <div class="date-label">本日出口票数</div>
+                        <div class="date-value" id="marketTodayOrders">0</div>
+                    </div>
+                </div>
+                <div class="flex-between" style="margin-top: 8px; justify-content: center;">
+                    <div class="date-item">
+                        <div class="date-label">本日出口金额</div>
+                        <div class="date-value" id="marketTodayValue">0</div>
+                        <div class="date-sub">万美元</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 世界地图 -->
+        <div class="map-container module">
+            <div class="module-title"><i class="fas fa-map-marked-alt"></i> 全球通关分布图</div>
+            <div id="worldMap" class="chart-container"></div>
+        </div>
+        
+        <!-- 通关趋势图 -->
+        <div class="chart1 module">
+            <div class="module-title"><i class="fas fa-chart-line"></i> 年度通关趋势</div>
+            <div id="trendChart" class="chart-container"></div>
+        </div>
+        
+        <!-- 商品类别分析 - 服装和箱包 -->
+        <div class="chart2 module">
+            <div class="module-title"><i class="fas fa-chart-pie"></i> 跨境电商商品类别分布</div>
+            <div id="goodsChart" class="chart-container"></div>
+        </div>
+        
+        <!-- 海城跨境电商企业实时动态 - 单列显示企业名称 -->
+        <div class="realtime-list module">
+            <div class="module-title"><i class="fas fa-building"></i> 海城跨境电商企业名录 <span style="font-size: 12px; margin-left: 10px; color: #ff9c6e;">📋 共42家活跃企业</span></div>
+            <div class="list-container">
+                <div class="list-content" id="enterpriseList">
+                    <!-- 动态生成企业数据 -->
+                </div>
+            </div>
+        </div>
+        
+        <!-- 右侧区域 - TOP5商品排行 -->
+        <div class="right-panel1">
+            <div class="rank-card">
+                <div class="module-title" style="margin-bottom: 0;"><i class="fas fa-chart-simple"></i> 市场采购贸易本年度出口商品 TOP5</div>
+                <div class="rank-list" id="topProductsList">
+                    <!-- 动态生成商品排行 -->
+                </div>
+            </div>
+        </div>
+        
+        <!-- 右侧区域 - 供货商/外贸公司/报关行 -->
+        <div class="right-panel2">
+            <div class="supplier-card">
+                <div class="module-title" style="margin-bottom: 0;"><i class="fas fa-handshake"></i> 市场采购贸易企业统计</div>
+                <div class="supplier-stats">
+                    <div class="stat-item-supplier">
+                        <div class="stat-icon-supplier"><i class="fas fa-truck"></i></div>
+                        <div class="stat-number-supplier" id="supplierCount">6154</div>
+                        <div class="stat-label-supplier">供货商</div>
+                    </div>
+                    <div class="stat-item-supplier">
+                        <div class="stat-icon-supplier"><i class="fas fa-globe"></i></div>
+                        <div class="stat-number-supplier" id="tradingCount">65</div>
+                        <div class="stat-label-supplier">外贸公司</div>
+                    </div>
+                    <div class="stat-item-supplier">
+                        <div class="stat-icon-supplier"><i class="fas fa-file-signature"></i></div>
+                        <div class="stat-number-supplier" id="brokerCount">9</div>
+                        <div class="stat-label-supplier">报关行</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 底部信息 -->
+    <div class="footer">
+        <div class="data-source">数据来源：海城海关跨境电商通关系统 | 西柳服装城企业实时申报数据</div>
+        <div class="data-update">
+            <span class="blink"></span>
+            最后更新: <span id="lastUpdate">16:35:22</span>
+        </div>
+        <div>监控周期: 实时动态 | 数据每3秒自动刷新</div>
+    </div>
+
+    <script>
+        // 海城跨境电商企业完整名单 (共42家)
+        const enterprises = [
+            "海城市华德服装制衣有限公司", "海城市圣兰翔服饰有限公司", "海城市大爱美依缘商贸城有限公司",
+            "辽宁政轩国际物流有限公司", "海城市西柳镇优棉坊服装商行", "海城市兴海区十二百货零售商店",
+            "海城市兴海区洪宇服装商行", "海城市西柳镇百亿狮隆服装商行", "海城中央化学有限公司",
+            "海城市兴海区鑫源印刷厂", "海城市西柳镇羽翼良品服装商行", "海城市海州区尊棋精品服饰店",
+            "海城市阿炜服饰商贸有限公司", "鞍山方得跨境电商有限公司", "海城市西柳镇琼语服装服饰店",
+            "海城市兴海区艳艳姐服饰精品店", "海城市佳佳商贸服务有限公司", "海城市西柳镇超越大码女装店",
+            "海城市西柳镇美源商贸服务中心", "海城市西柳镇博仲服饰店", "海城市西柳镇姚衣姚洋气女装店",
+            "海城市西柳镇泽茗商贸店", "海城市西柳镇雨诺商贸中心", "辽宁佳佳乐商贸有限公司",
+            "海城市西柳镇木槿与风服饰店", "海城市西柳镇币晟服饰店", "海城市西柳镇三姐的服装店",
+            "润佳（辽宁省）商贸有限公司", "海城市西柳镇锦泽网络科技中心", "海城市西柳镇浣英网络技术中心",
+            "海城市海贸通供应链管理有限公司", "海城是贸达进出口有限公司", "海城市春雷储运服务有限公司",
+            "海城市百恒皮具有限公司", "辽宁西柳服装商业管理集团有限公司", "西柳服装贸易（辽宁）有限公司",
+            "辽宁西柳电子口岸有限公司", "辽宁西柳网络科技有限公司", "辽宁北纬四零商业管理有限公司",
+            "辽宁衣饰天下文化传媒有限公司", "海城市西柳服装集团有限公司", "海城市百信进出口贸易有限公司","辽宁超鹏服饰有限公司"
+        ];
+        
+        // 年度出口商品TOP5数据
+        const topProducts = [
+            { rank: 1, name: "檬胶、塑斜、皮羊及再生", desc: "橡胶塑料及皮革制品", value: "28.6%", class: "top1" },
+            { rank: 2, name: "棉制女式上衣", desc: "棉制针织女式上衣", value: "18.3%", class: "top2" },
+            { rank: 3, name: "账本,笔记本等及类似品", desc: "纸制品及办公文具", value: "12.7%", class: "top3" },
+            { rank: 4, name: "其他镐，锄，耙", desc: "农用手工工具", value: "8.9%" },
+            { rank: 5, name: "护胸背带工装裤、马裤", desc: "工装及功能性服装", value: "7.2%" }
+        ];
+        
+        // 渲染企业列表 (单列显示)
+        function renderEnterpriseList() {
+            const container = document.getElementById('enterpriseList');
+            if (!container) return;
+            
+            // 生成企业列表HTML (双倍数据用于无缝滚动)
+            let html = '';
+            for (let i = 0; i < enterprises.length; i++) {
+                const company = enterprises[i];
+                html += `
+                <div class="list-item">
+                    <div class="company-name">
+                        <i class="fas fa-building"></i>
+                        ${company}
+                    </div>
+                </div>`;
+            }
+            
+            container.innerHTML = html + html;
+            
+            // 更新最后更新时间
+            const now = new Date();
+            const timeStr = now.toTimeString().substring(0, 8);
+            document.getElementById('lastUpdate').textContent = timeStr;
+        }
+        
+        // 渲染跨境电商统计数据
+        function renderCrossBorderStats() {
+            // 使用固定数据
+            document.getElementById('crossBorderTotalOrders').innerHTML = '4,921';
+            document.getElementById('crossBorderTotalValue').innerHTML = '61,884';
+            document.getElementById('yearMonthOrders').innerHTML = '35/17';
+            document.getElementById('yearMonthValue').innerHTML = '110/59';
+            document.getElementById('todayOrders').innerHTML = '0';
+            document.getElementById('todayValue').innerHTML = '0';
+        }
+        
+        // 渲染市场采购贸易数据
+        function renderMarketStats() {
+            // 使用固定数据
+            document.getElementById('marketTotalOrders').innerHTML = '4,921';
+            document.getElementById('marketTotalValue').innerHTML = '61,884';
+            document.getElementById('marketYearMonthOrders').innerHTML = '35/17';
+            document.getElementById('marketYearMonthValue').innerHTML = '110/59';
+            document.getElementById('marketTodayOrders').innerHTML = '0';
+            document.getElementById('marketTodayValue').innerHTML = '0';
+        }
+        
+        // 渲染TOP5商品排行
+        function renderTopProducts() {
+            const container = document.getElementById('topProductsList');
+            if (!container) return;
+            
+            let html = '';
+            topProducts.forEach(product => {
+                const rankClass = product.class || '';
+                html += `
+                <div class="rank-item">
+                    <div class="rank-number ${rankClass}">${product.rank}</div>
+                    <div class="rank-info">
+                        <div class="rank-name">${product.name}</div>
+                        <div class="rank-desc">${product.desc}</div>
+                    </div>
+                    <div class="rank-value">${product.value}</div>
+                </div>`;
+            });
+            container.innerHTML = html;
+        }
+        
+        // 渲染配套服务商统计
+        function renderSupplierStats() {
+            document.getElementById('supplierCount').innerHTML = '6154';
+            document.getElementById('tradingCount').innerHTML = '65';
+            document.getElementById('brokerCount').innerHTML = '9';
+        }
+        
+        // 初始化时间显示
+        function updateTime() {
+            const now = new Date();
+            const dateStr = now.toISOString().split('T')[0].replace(/-/g, '-');
+            const timeStr = now.toTimeString().substring(0, 8);
+            document.getElementById('currentDate').textContent = dateStr;
+            document.getElementById('currentTime').textContent = timeStr;
+        }
+        
+        // 初始化图表
+        function initCharts() {
+            const mapChart = echarts.init(document.getElementById('worldMap'));
+
+            const geoCoordMap = {
+                '中国': [116.46, 39.92],
+                '美国': [-77.0369, 38.9072],
+                '德国': [13.4050, 52.5200],
+                '日本': [139.6917, 35.6895],
+                '英国': [-0.1276, 51.5074],
+                '澳大利亚': [151.2093, -33.8688],
+                '韩国': [126.9780, 37.5665],
+                '俄罗斯': [37.6173, 55.7558]
+            };
+
+            const flightData = [
+                [{name: '中国'}, {name: '美国', value: 95}],
+                [{name: '中国'}, {name: '德国', value: 85}],
+                [{name: '中国'}, {name: '日本', value: 78}],
+                [{name: '中国'}, {name: '英国', value: 72}],
+                [{name: '中国'}, {name: '澳大利亚', value: 65}],
+                [{name: '中国'}, {name: '韩国', value: 88}],
+                [{name: '中国'}, {name: '俄罗斯', value: 58}]
+            ];
+
+            function convertData(data) {
+                const res = [];
+                data.forEach(item => {
+                    const fromCoord = geoCoordMap[item[0].name];
+                    const toCoord = geoCoordMap[item[1].name];
+                    if (fromCoord && toCoord) {
+                        res.push({
+                            fromName: item[0].name,
+                            toName: item[1].name,
+                            coords: [fromCoord, toCoord],
+                            value: item[1].value
+                        });
+                    }
+                });
+                return res;
+            }
+
+            const mapOption = {
+                tooltip: { trigger: 'item' },
+                geo: {
+                    map: 'world',
+                    roam: true,
+                    zoom: 1.2,
+                    itemStyle: {
+                        areaColor: '#0a2a43',
+                        borderColor: '#1cccff'
+                    },
+                    emphasis: {
+                        itemStyle: { areaColor: '#1d5e98' }
+                    }
+                },
+                series: [
+                    { type: 'map', map: 'world', geoIndex: 0 },
+                    {
+                        name: '航线',
+                        type: 'lines',
+                        coordinateSystem: 'geo',
+                        zlevel: 2,
+                        effect: {
+                            show: true,
+                            period: 6,
+                            trailLength: 0.6,
+                            symbol: 'image://https://img.icons8.com/ios-filled/50/00eaff/airplane-take-off.png',
+                            symbolSize: 18
+                        },
+                        lineStyle: {
+                            width: 2,
+                            opacity: 0.8,
+                            curveness: 0.25,
+                            color: new echarts.graphic.LinearGradient(0, 0, 1, 0, [
+                                { offset: 0, color: '#00eaff' },
+                                { offset: 1, color: '#007bff' }
+                            ])
+                        },
+                        data: convertData(flightData)
+                    },
+                    {
+                        type: 'effectScatter',
+                        coordinateSystem: 'geo',
+                        zlevel: 3,
+                        rippleEffect: { brushType: 'stroke' },
+                        label: { show: true, position: 'right', formatter: '{b}', color: '#8ac6ff' },
+                        symbolSize: 10,
+                        itemStyle: { color: '#00fff7' },
+                        data: Object.keys(geoCoordMap).map(name => ({
+                            name,
+                            value: geoCoordMap[name].concat(100)
+                        }))
+                    }
+                ]
+            };
+            mapChart.setOption(mapOption);
+            
+            // 趋势图
+            const trendChart = echarts.init(document.getElementById('trendChart'));
+            const trendOption = {
+                tooltip: { trigger: 'axis', backgroundColor: 'rgba(16, 35, 70, 0.8)', borderColor: 'rgba(64, 158, 255, 0.5)', textStyle: { color: '#e6f7ff' } },
+                legend: { data: ['通关量', '货值(万)'], textStyle: { color: '#8ac6ff' }, right: 125, top: 0 },
+                grid: { left: '3%', right: '4%', bottom: '3%', top: '15%', containLabel: true },
+                xAxis: { type: 'category', data: Array.from({length: 30}, (_, i) => `${i+1}日`), axisLine: { lineStyle: { color: '#4a6587' } }, axisLabel: { color: '#8ac6ff' } },
+                yAxis: [
+                    { type: 'value', name: '通关量', axisLine: { lineStyle: { color: '#4a6587' } }, splitLine: { lineStyle: { color: 'rgba(74,101,135,0.3)' } }, axisLabel: { color: '#8ac6ff' }, nameTextStyle: { color: '#8ac6ff' } },
+                    { type: 'value', name: '货值(万)', position: 'right', axisLine: { show: true, lineStyle: { color: '#4a6587' } }, splitLine: { show: false }, axisLabel: { color: '#8ac6ff' }, nameTextStyle: { color: '#8ac6ff' } }
+                ],
+                series: [
+                    { name: '通关量', type: 'line', smooth: true, lineStyle: { width: 3, color: '#36cfc9' }, itemStyle: { color: '#36cfc9' }, areaStyle: { color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{ offset: 0, color: 'rgba(54, 207, 201, 0.5)' }, { offset: 1, color: 'rgba(54, 207, 201, 0.1)' }]) }, data: Array.from({length: 30}, () => Math.floor(Math.random() * 1000) + 4000) },
+                    { name: '货值(万)', type: 'line', yAxisIndex: 1, smooth: true, lineStyle: { width: 3, color: '#ff9c6e' }, itemStyle: { color: '#ff9c6e' }, data: Array.from({length: 30}, () => Math.floor(Math.random() * 3000) + 7000) }
+                ]
+            };
+            trendChart.setOption(trendOption);
+            
+            // 商品类别图 - 服装和箱包
+            const goodsChart = echarts.init(document.getElementById('goodsChart'));
+            const goodsOption = {
+                tooltip: { trigger: 'item', backgroundColor: 'rgba(16, 35, 70, 0.8)', borderColor: 'rgba(64, 158, 255, 0.5)', textStyle: { color: '#e6f7ff' }, formatter: '{b}: {d}%' },
+                legend: { orient: 'vertical', right: 10, top: 'center', textStyle: { color: '#8ac6ff' } },
+                series: [{ 
+                    type: 'pie', 
+                    radius: ['40%', '70%'], 
+                    center: ['40%', '50%'], 
+                    roseType: 'radius', 
+                    itemStyle: { borderRadius: 8, borderColor: '#0c1b33', borderWidth: 2 }, 
+                    label: { color: '#e6f7ff', formatter: '{b}: {d}%' }, 
+                    data: [
+                        { value: 76, name: '服装服饰', itemStyle: { color: '#36cfc9' } },
+                        { value: 24, name: '箱包皮具', itemStyle: { color: '#ff9c6e' } }
+                    ] 
+                }]
+            };
+            goodsChart.setOption(goodsOption);
+        }
+        
+        // 窗口大小变化时重绘图表
+        window.addEventListener('resize', function() {
+            const charts = ['worldMap', 'trendChart', 'goodsChart'];
+            charts.forEach(id => {
+                const dom = document.getElementById(id);
+                if (dom) echarts.getInstanceByDom(dom)?.resize();
+            });
+        });
+        
+        // 页面加载完成后初始化
+        document.addEventListener('DOMContentLoaded', function() {
+            updateTime();
+            setInterval(updateTime, 1000);
+            
+            renderEnterpriseList();
+            renderCrossBorderStats();
+            renderMarketStats();
+            renderTopProducts();
+            renderSupplierStats();
+            initCharts();
+            
+            // 每3秒刷新企业列表
+            setInterval(() => {
+                renderEnterpriseList();
+            }, 3000);
+        });
+    </script>
+</body>
+</html>

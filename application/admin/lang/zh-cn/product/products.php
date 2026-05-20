@@ -1,0 +1,32 @@
+<?php
+
+return [
+    'EbcID'            => '电商企业ID',
+    'ItemNo'           => '企业商品货号',
+    'ItemName'         => '商品品名',
+    'EnName'           => '商品英文名',
+    'Gcode'            => '海关商品编码',
+    'Gname'            => '备案商品名称',
+    'Gmodel'           => '规格型号',
+    'Barcode'          => '条形码',
+    'Brand'            => '品牌',
+    'Price'            => '备案价格',
+    'DeclarePrice'     => '申报价格',
+    'Product_currency' => '商品币制',
+    'Taxno'            => '物品税号',
+    'GiftFlag'         => '赠品',
+    'Note'             => '备注',
+    'ReturnStatus'     => '202回执状态',
+    'ReturnTime'       => '202回执时间',
+    'LastFilename'     => '202最后接收文件名',
+    'PreNo'            => '预录入编号',
+    'Gno'              => '海关商品备案编号',
+    'Qty1'             => '法定数量',
+    'Qty2'             => '第二数量',
+    'Weight'           => '单件毛重',
+    'NetWeight'        => '单件净重',
+    'Unit'             => '计量单位',
+    'Unit1'            => '法定单位',
+    'Unit2'            => '第二单位',
+    'Disabled'         => '状态'
+];
