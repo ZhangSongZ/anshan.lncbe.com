@@ -28,7 +28,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
                     [
                         {checkbox: true},
                         {field: 'productID', title: __('序号')},
-                        {field: 'ebcID', title: __('EbcID')},
+                        {field: 'auth_id', title: __('企业ID')},
                         {field: 'itemNo', title: __('ItemNo'), operate: 'LIKE'},
                         {field: 'itemName', title: __('ItemName'), operate: 'LIKE'},
                         {field: 'EnName', title: __('EnName'), operate: 'LIKE'},

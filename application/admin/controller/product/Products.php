@@ -214,7 +214,6 @@ class Products extends Backend
             foreach($arrays as $k=>$v){
                 $valuesString = implode(",",$v);
                 $sql = "Insert into ln_products (auth_id,itemNo,itemName,gcode,gmodel,price,product_currency,unit,unit1,qty1,unit2,qty2,netWeight,weight) VALUES $valuesString";
-                var_dump($sql);die;
 				db::query($sql);
             }
             //完成此次导入程序
