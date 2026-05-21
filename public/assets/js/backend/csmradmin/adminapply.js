@@ -119,7 +119,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
                                         Fast.api.close(data);
                                     },
                                     visible: function (row) {
-                                        if((row.auditstatus=='0'||row.auditstatus=='-1') && table.data("view")){
+                                        if(table.data("view")){
                                             return true;
                                         }else{
                                             return false;
