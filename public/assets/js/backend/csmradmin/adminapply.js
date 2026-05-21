@@ -76,7 +76,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
                                 },
                                 {
                                     name: 'submitauditreturn',
-                                    text: __('审核退回'),
+                                    text: __('审核退回1'),
                                     classname: 'btn btn-xs btn-danger btn-dialog',
                                     icon: 'fa fa-file',
                                     url: 'csmradmin/adminapply/submitauditreturn',
