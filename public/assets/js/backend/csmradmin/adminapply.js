@@ -58,6 +58,23 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
                         	formatter: Table.api.formatter.buttons,
                             buttons: [
                                 {
+                                    name: 'edit',
+                                    text: __('编辑'),
+                                    classname: 'btn btn-xs btn-warning btn-dialog',
+                                    icon: 'fa fa-pencil',
+                                    url: 'csmradmin/adminapply/edit',
+                                    callback: function (data) {
+                                        Fast.api.close(data);
+                                    },
+                                    visible: function (row) {
+                                        if(table.data("operate-edit")){
+                                            return true;
+                                        }else{
+                                            return false;
+                                        }    
+                                    }                                    
+                                },
+                                {
                                     name: 'submitauditreturn',
                                     text: __('审核退回'),
                                     classname: 'btn btn-xs btn-danger btn-dialog',

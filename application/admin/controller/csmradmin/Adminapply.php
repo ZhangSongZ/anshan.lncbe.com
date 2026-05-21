@@ -209,6 +209,33 @@ class Adminapply extends CsmBackend
         return $this->view->fetch();
     }
 
+    /**
+     * 编辑
+     */
+    public function edit($ids = null)
+    {
+        $row = $this->model->get($ids);
+        if (!$row) {
+            $this->error(__('No Results were found'));
+        }
+        $adminIds = $this->getDataLimitAdminIds();
+        if (is_array($adminIds)) {
+            if (!in_array($row[$this->dataLimitField], $adminIds)) {
+                $this->error(__('You have no permission'));
+            }
+        }
+        if ($this->request->isPost()) {
+            $params = $this->request->post("row/a");
+            if ($params) {
+                $params['updatetime'] = time();
+                $row->allowField(true)->save($params);
+            }
+            $this->success();
+        }
+        $this->view->assign("row", $row);
+        return $this->view->fetch();
+    }
+
     public function view($ids = null)
     {
         $row = $this->model->get($ids);
