@@ -161,6 +161,7 @@ class Adminapply extends CsmBackend
         }
         $this->view->assign("row", $row);
         return $this->view->fetch();
+        //
     }
 
     /**
