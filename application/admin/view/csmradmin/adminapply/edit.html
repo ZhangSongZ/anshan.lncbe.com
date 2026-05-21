@@ -37,33 +37,115 @@
         </div>
     </div>
     <div class="form-group">
-        <label class="control-label col-xs-12 col-sm-2">{:__('Auth_group_ids')}:</label>
+        <label class="control-label col-xs-12 col-sm-2">{:__('Customs_reg_name')}:</label>
         <div class="col-xs-12 col-sm-8">
-            <input id="c-auth_group_ids" data-source="csmradmin/adminapply/selectindex" data-multiple="true" class="form-control selectpage" name="row[auth_group_ids]" type="text" value="{$row.auth_group_ids|htmlentities}">
+            <input id="c-customs_reg_name" data-rule="required" class="form-control" name="row[customs_reg_name]" type="text" value="{$row.customs_reg_name|htmlentities}">
         </div>
     </div>
     <div class="form-group">
-        <label class="control-label col-xs-12 col-sm-2">{:__('Auditstatus')}:</label>
+        <label class="control-label col-xs-12 col-sm-2">{:__('Customs_reg_code')}:</label>
         <div class="col-xs-12 col-sm-8">
-            <div class="radio">
-            {foreach name="auditstatusList" item="vo"}
-            <label for="row[auditstatus]-{$key}"><input id="row[auditstatus]-{$key}" name="row[auditstatus]" type="radio" value="{$key}" {in name="key" value="$row.auditstatus"}checked{/in} /> {$vo}</label> 
-            {/foreach}
+            <input id="c-customs_reg_code" data-rule="required" class="form-control" name="row[customs_reg_code]" type="text" value="{$row.customs_reg_code|htmlentities}">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Reg_customs')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-reg_customs" class="form-control" name="row[reg_customs]" type="text" value="{$row.reg_customs|htmlentities}" placeholder="如：鞍山海关">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Social_code')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-social_code" data-rule="required" class="form-control" name="row[social_code]" type="text" value="{$row.social_code|htmlentities}">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Legal_rep')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-legal_rep" data-rule="required" class="form-control" name="row[legal_rep]" type="text" value="{$row.legal_rep|htmlentities}">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Legal_rep_phone')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-legal_rep_phone" data-rule="required" class="form-control" name="row[legal_rep_phone]" type="text" value="{$row.legal_rep_phone|htmlentities}">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Contact_person')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-contact_person" data-rule="required" class="form-control" name="row[contact_person]" type="text" value="{$row.contact_person|htmlentities}">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Contact_phone')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-contact_phone" data-rule="required" class="form-control" name="row[contact_phone]" type="text" value="{$row.contact_phone|htmlentities}">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Biz_license')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <div class="input-group">
+                <input id="c-biz_license" class="form-control" name="row[biz_license]" type="text" value="{$row.biz_license|htmlentities}">
+                <div class="input-group-addon no-border no-padding">
+                    <span><button type="button" id="plupload-biz_license" class="btn btn-danger plupload" data-input-id="c-biz_license" data-mimetype="image/gif,image/jpeg,image/png,image/jpg,image/bmp" data-multiple="false" data-preview-id="p-biz_license"><i class="fa fa-upload"></i> {:__('Upload')}</button></span>
+                    <span><button type="button" id="fachoose-biz_license" class="btn btn-primary fachoose" data-input-id="c-biz_license" data-mimetype="image/*" data-multiple="false"><i class="fa fa-list"></i> {:__('Choose')}</button></span>
+                </div>
+                <span class="msg-box n-right" for="c-biz_license"></span>
             </div>
+            <ul class="row list-inline plupload-preview" id="p-biz_license"></ul>
         </div>
     </div>
     <div class="form-group">
-        <label class="control-label col-xs-12 col-sm-2">{:__('Auditreturn')}:</label>
+        <label class="control-label col-xs-12 col-sm-2">{:__('Qual_cert')}:</label>
         <div class="col-xs-12 col-sm-8">
-            <input id="c-auditreturn" class="form-control" name="row[auditreturn]" type="text" value="{$row.auditreturn|htmlentities}">
+            <div class="input-group">
+                <input id="c-qual_cert" class="form-control" name="row[qual_cert]" type="text" value="{$row.qual_cert|htmlentities}">
+                <div class="input-group-addon no-border no-padding">
+                    <span><button type="button" id="plupload-qual_cert" class="btn btn-danger plupload" data-input-id="c-qual_cert" data-mimetype="image/gif,image/jpeg,image/png,image/jpg,image/bmp" data-multiple="false" data-preview-id="p-qual_cert"><i class="fa fa-upload"></i> {:__('Upload')}</button></span>
+                    <span><button type="button" id="fachoose-qual_cert" class="btn btn-primary fachoose" data-input-id="c-qual_cert" data-mimetype="image/*" data-multiple="false"><i class="fa fa-list"></i> {:__('Choose')}</button></span>
+                </div>
+                <span class="msg-box n-right" for="c-qual_cert"></span>
+            </div>
+            <ul class="row list-inline plupload-preview" id="p-qual_cert"></ul>
         </div>
     </div>
     <div class="form-group">
-        <label class="control-label col-xs-12 col-sm-2">{:__('备注')}:</label>
+        <label class="control-label col-xs-12 col-sm-2">{:__('Biz_address')}:</label>
         <div class="col-xs-12 col-sm-8">
-            <textarea id="c-description" class="form-control" rows="3" name="row[description]" cols="50">{$row.description|htmlentities}</textarea>
+            <input id="c-biz_address" data-rule="required" class="form-control" name="row[biz_address]" type="text" value="{$row.biz_address|htmlentities}">
         </div>
     </div>
+    <!--<div class="form-group">-->
+    <!--    <label class="control-label col-xs-12 col-sm-2">{:__('Auth_group_ids')}:</label>-->
+    <!--    <div class="col-xs-12 col-sm-8">-->
+    <!--        <input id="c-auth_group_ids" data-source="csmradmin/adminapply/selectindex" data-multiple="true" class="form-control selectpage" name="row[auth_group_ids]" type="text" value="{$row.auth_group_ids|htmlentities}">-->
+    <!--    </div>-->
+    <!--</div>-->
+    <!--<div class="form-group">-->
+    <!--    <label class="control-label col-xs-12 col-sm-2">{:__('Auditstatus')}:</label>-->
+    <!--    <div class="col-xs-12 col-sm-8">-->
+    <!--        <div class="radio">-->
+    <!--        {foreach name="auditstatusList" item="vo"}-->
+    <!--        <label for="row[auditstatus]-{$key}"><input id="row[auditstatus]-{$key}" name="row[auditstatus]" type="radio" value="{$key}" {in name="key" value="$row.auditstatus"}checked{/in} /> {$vo}</label> -->
+    <!--        {/foreach}-->
+    <!--        </div>-->
+    <!--    </div>-->
+    <!--</div>-->
+    <!--<div class="form-group">-->
+    <!--    <label class="control-label col-xs-12 col-sm-2">{:__('Auditreturn')}:</label>-->
+    <!--    <div class="col-xs-12 col-sm-8">-->
+    <!--        <input id="c-auditreturn" class="form-control" name="row[auditreturn]" type="text" value="{$row.auditreturn|htmlentities}">-->
+    <!--    </div>-->
+    <!--</div>-->
+    <!--<div class="form-group">-->
+    <!--    <label class="control-label col-xs-12 col-sm-2">{:__('备注')}:</label>-->
+    <!--    <div class="col-xs-12 col-sm-8">-->
+    <!--        <textarea id="c-description" class="form-control" rows="3" name="row[description]" cols="50">{$row.description|htmlentities}</textarea>-->
+    <!--    </div>-->
+    <!--</div>-->
     <div class="form-group layer-footer">
         <label class="control-label col-xs-12 col-sm-2"></label>
         <div class="col-xs-12 col-sm-8">

@@ -3,19 +3,25 @@
     <div class="form-group">
         <label class="control-label col-xs-12 col-sm-2">{:__('Username')}:</label>
         <div class="col-xs-12 col-sm-8">
-            <input id="c-username" readonly="true" data-rule="required" class="form-control" name="row[username]" type="text" value="{$row.username|htmlentities}">
+            <input id="c-username" readonly="true" class="form-control" name="row[username]" type="text" value="{$row.username|htmlentities}">
         </div>
     </div>
     <div class="form-group">
         <label class="control-label col-xs-12 col-sm-2">{:__('Nickname')}:</label>
         <div class="col-xs-12 col-sm-8">
-            <input id="c-nickname" readonly="true" data-rule="required" class="form-control" name="row[nickname]" type="text" value="{$row.nickname|htmlentities}">
+            <input id="c-nickname" readonly="true" class="form-control" name="row[nickname]" type="text" value="{$row.nickname|htmlentities}">
         </div>
     </div>
     <div class="form-group">
-        <label class="control-label col-xs-12 col-sm-2">{:__('Email')}:</label>
+        <label class="control-label col-xs-12 col-sm-2">{:__('企业类型')}:</label>
         <div class="col-xs-12 col-sm-8">
-            <input id="c-email" readonly="true" data-rule="required" class="form-control" name="row[email]" type="text" value="{$row.email|htmlentities}">
+            <input id="c-type" readonly="true" class="form-control" name="row[type]" type="text" value="{$row.type|htmlentities}">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('联系电话')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-phone" readonly="true" class="form-control" name="row[phone]" type="text" value="{$row.phone|htmlentities}">
         </div>
     </div>
     <div class="form-group">
@@ -25,21 +31,93 @@
         </div>
     </div>
     <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Customs_reg_name')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-customs_reg_name" readonly="true" class="form-control" name="row[customs_reg_name]" type="text" value="{$row.customs_reg_name|htmlentities}">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Customs_reg_code')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-customs_reg_code" readonly="true" class="form-control" name="row[customs_reg_code]" type="text" value="{$row.customs_reg_code|htmlentities}">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Reg_customs')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-reg_customs" readonly="true" class="form-control" name="row[reg_customs]" type="text" value="{$row.reg_customs|htmlentities}">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Social_code')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-social_code" readonly="true" class="form-control" name="row[social_code]" type="text" value="{$row.social_code|htmlentities}">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Legal_rep')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-legal_rep" readonly="true" class="form-control" name="row[legal_rep]" type="text" value="{$row.legal_rep|htmlentities}">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Legal_rep_phone')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-legal_rep_phone" readonly="true" class="form-control" name="row[legal_rep_phone]" type="text" value="{$row.legal_rep_phone|htmlentities}">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Contact_person')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-contact_person" readonly="true" class="form-control" name="row[contact_person]" type="text" value="{$row.contact_person|htmlentities}">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Contact_phone')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-contact_phone" readonly="true" class="form-control" name="row[contact_phone]" type="text" value="{$row.contact_phone|htmlentities}">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Biz_license')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            {if condition="$row.biz_license"}
+            <a href="{$row.biz_license}" target="_blank"><img src="{$row.biz_license}" style="max-width:300px;max-height:200px;border:1px solid #ddd;padding:4px;border-radius:4px;"></a>
+            {else /}
+            <span class="text-muted">暂无</span>
+            {/if}
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Qual_cert')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            {if condition="$row.qual_cert"}
+            <a href="{$row.qual_cert}" target="_blank"><img src="{$row.qual_cert}" style="max-width:300px;max-height:200px;border:1px solid #ddd;padding:4px;border-radius:4px;"></a>
+            {else /}
+            <span class="text-muted">暂无</span>
+            {/if}
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Biz_address')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-biz_address" readonly="true" class="form-control" name="row[biz_address]" type="text" value="{$row.biz_address|htmlentities}">
+        </div>
+    </div>
+    <div class="form-group">
         <label class="control-label col-xs-12 col-sm-2">{:__('Auth_group_ids')}:</label>
         <div class="col-xs-12 col-sm-8">
-            <input id="c-auth_group_ids"  readonly="true" data-rule="required" data-source="auth/group/index" data-multiple="true" class="form-control selectpage" name="row[auth_group_ids]" type="text" value="{$row.auth_group_ids|htmlentities}">
+            <input id="c-auth_group_ids" readonly="true" data-source="auth/group/index" data-multiple="true" class="form-control selectpage" name="row[auth_group_ids]" type="text" value="{$row.auth_group_ids|htmlentities}">
         </div>
     </div>
     <div class="form-group">
         <label class="control-label col-xs-12 col-sm-2">{:__('Auditstatus')}:</label>
         <div class="col-xs-12 col-sm-8">
-            
             <div class="radio">
             {foreach name="auditstatusList" item="vo"}
-            <label for="row[auditstatus]-{$key}"><input id="row[auditstatus]-{$key}"  disabled="" name="row[auditstatus]" type="radio" value="{$key}" {in name="key" value="$row.auditstatus"}checked{/in} /> {$vo}</label> 
+            <label for="row[auditstatus]-{$key}"><input id="row[auditstatus]-{$key}" disabled="" name="row[auditstatus]" type="radio" value="{$key}" {in name="key" value="$row.auditstatus"}checked{/in} /> {$vo}</label> 
             {/foreach}
             </div>
-
         </div>
     </div>
     <div class="form-group">
@@ -48,7 +126,6 @@
             <input id="c-auditreturn" readonly="true" class="form-control" name="row[auditreturn]" type="text" value="{$row.auditreturn|htmlentities}">
         </div>
     </div>
- 
     <div class="form-group">
         <label class="control-label col-xs-12 col-sm-2">{:__('Audituser')}:</label>
         <div class="col-xs-12 col-sm-8">
