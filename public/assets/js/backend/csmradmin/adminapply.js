@@ -2,7 +2,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
 
     var Controller = {
         index: function () {
-            // 初始化表格参数配置111
+            // 初始化表格参数配置333
             Table.api.init({
                 extend: {
                     index_url: 'csmradmin/adminapply/index' + location.search,
