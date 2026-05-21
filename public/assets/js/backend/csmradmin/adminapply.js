@@ -13,7 +13,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
                     table: 'csmradmin_adminapply',
                 }
             });
-
+             //2222222222222222
             var table = $("#table");
             // 初始化表格
             table.bootstrapTable({
