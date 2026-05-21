@@ -92,6 +92,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
                                         }    
                                     }                                    
                                 },
+                                
                                 {
                                     name: 'submitauditok',
                                     text: __('审核通过'),
