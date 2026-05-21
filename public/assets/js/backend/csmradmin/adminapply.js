@@ -59,7 +59,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
                             buttons: [
                                 {
                                     name: 'edit',
-                                    text: __('编辑1'),
+                                    text: __('补充信息'),
                                     classname: 'btn btn-xs btn-warning btn-dialog',
                                     icon: 'fa fa-pencil',
                                     url: 'csmradmin/adminapply/edit',
